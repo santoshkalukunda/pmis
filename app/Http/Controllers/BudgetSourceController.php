@@ -13,9 +13,15 @@ class BudgetSourceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(BudgetSource $budgetSource = null)
     {
-        //
+        if (!$budgetSource) {
+            $budgetSource = new BudgetSource();
+        }
+
+        $budgetSources = BudgetSource::get();
+
+        return view('budget-source.index',compact('budgetSource', 'budgetSources'));
     }
 
     /**
@@ -36,7 +42,8 @@ class BudgetSourceController extends Controller
      */
     public function store(StoreBudgetSourceRequest $request)
     {
-        //
+        BudgetSource::create($request->validated());
+        return redirect()->route('budget-sources.index')->with('success',"Budget Source Created");
     }
 
     /**
@@ -58,7 +65,7 @@ class BudgetSourceController extends Controller
      */
     public function edit(BudgetSource $budgetSource)
     {
-        //
+        return $this->index($budgetSource);
     }
 
     /**
@@ -70,7 +77,8 @@ class BudgetSourceController extends Controller
      */
     public function update(UpdateBudgetSourceRequest $request, BudgetSource $budgetSource)
     {
-        //
+        $budgetSource->update($request->validated());
+        return redirect()->route('budget-sources.index')->with('success','Budget Source Updated');
     }
 
     /**
@@ -81,6 +89,7 @@ class BudgetSourceController extends Controller
      */
     public function destroy(BudgetSource $budgetSource)
     {
-        //
+        $budgetSource->delete();
+        return redirect()->back()->with('success','Budget source Deleted');
     }
 }
