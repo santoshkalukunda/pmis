@@ -14,12 +14,24 @@
                                 @method('put')
                             @endif
                             <div class="mb-3">
-                                <label for="name" class="form-label">Name</label>
+                                <label for="name" class="form-label required">Name</label>
                                 <input type="text" name="name"
                                     class="form-control @error('name') is-invalid @enderror"
                                     value="{{ old('name', $office->name) }}" id="name" aria-describedby="name">
                                 <div class="invalid-feedback">
                                     @error('name')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="english_name" class="form-label required">English Name</label>
+                                <input type="text" name="english_name"
+                                    class="form-control @error('english_name') is-invalid @enderror"
+                                    value="{{ old('english_name', $office->english_name) }}" id="english_name" aria-describedby="english_name">
+                                <div class="invalid-feedback">
+                                    @error('english_name')
                                         {{ $message }}
                                     @enderror
 

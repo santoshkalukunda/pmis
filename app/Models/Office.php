@@ -17,7 +17,7 @@ class Office extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('english-name')
+            ->generateSlugsFrom('english_name')
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
     }

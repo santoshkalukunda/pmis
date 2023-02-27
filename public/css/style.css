@@ -2,3 +2,9 @@
 background-color: #1c4267;
 color: white;
 }
+/* required *  i lable */
+
+label.required:after {
+    content: ' *';
+    color: #fa5661;
+}

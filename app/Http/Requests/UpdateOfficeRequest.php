@@ -25,6 +25,7 @@ class UpdateOfficeRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'english_name' => 'required',
             'parent_id' => 'nullable'
         ];
     }
