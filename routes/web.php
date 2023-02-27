@@ -3,6 +3,7 @@
 use App\Http\Controllers\BudgetSourceController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\OfficeController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +45,6 @@ Route::get('fiscal-years',[FiscalYearController::class,'index'])->name('fiscal-y
 Route::post('fiscal-years',[FiscalYearController::class,'store'])->name('fiscal-years.store');
 Route::get('fiscal-years/{fiscalYear}/edit',[FiscalYearController::class,'edit'])->name('fiscal-years.edit');
 Route::put('fiscal-years/{fiscalYear}',[FiscalYearController::class,'update'])->name('fiscal-years.update');
-Route::delete('fiscal-years/{fiscalYear}',[FiscalYearController::class,'destroy'])->name('fiscal--years.destroy');
+Route::delete('fiscal-years/{fiscalYear}',[FiscalYearController::class,'destroy'])->name('fiscal-years.destroy');
 
 

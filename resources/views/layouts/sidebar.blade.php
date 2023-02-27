@@ -67,11 +67,24 @@
                 </li>
                 <li class="nav-header">Settings</li>
                 <li class="nav-item">
+                    <a href="{{ route('fiscal-years.index') }}" class="nav-link text-white">
+                        <i class="bi bi-calendar3 nav-icon"></i>
+                        <p>आर्थिक वर्ष</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('offices.index') }}" class="nav-link text-white">
                         <i class="bi bi-buildings nav-icon"></i>
                         <p>कार्यालयहरू</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('budget-sources.index') }}" class="nav-link text-white">
+                        <i class="bi bi-bank nav-icon"></i>
+                        <p>बजेट स्रोत</p>
+                    </a>
+                </li>
+
                 <hr>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('logout') }}"

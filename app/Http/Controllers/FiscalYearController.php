@@ -13,9 +13,15 @@ class FiscalYearController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(FiscalYear $fiscalYear)
     {
-        //
+        if (!$fiscalYear) {
+            $fiscalYear = new FiscalYear();
+        }
+
+        $fiscalYears = FiscalYear::orderBy('fiscal_year','desc')->get();
+
+        return view('fiscal-year.index',compact('fiscalYear', 'fiscalYears'));
     }
 
     /**
@@ -36,7 +42,9 @@ class FiscalYearController extends Controller
      */
     public function store(StoreFiscalYearRequest $request)
     {
-        //
+        FiscalYear::create($request->validated());
+        return redirect()->route('fiscal-years.index')->with('success',"Fiscal year Created");
+   
     }
 
     /**
@@ -58,7 +66,7 @@ class FiscalYearController extends Controller
      */
     public function edit(FiscalYear $fiscalYear)
     {
-        //
+       return $this->index($fiscalYear);
     }
 
     /**
@@ -70,7 +78,9 @@ class FiscalYearController extends Controller
      */
     public function update(UpdateFiscalYearRequest $request, FiscalYear $fiscalYear)
     {
-        //
+        $fiscalYear->update($request->validated());
+        return redirect()->route('fiscal-years.index')->with('success',"Fiscal year updated");
+
     }
 
     /**
@@ -81,6 +91,7 @@ class FiscalYearController extends Controller
      */
     public function destroy(FiscalYear $fiscalYear)
     {
-        //
+        $fiscalYear->delete();
+        return redirect()->back()->with('success','fiscal year deleted');
     }
 }

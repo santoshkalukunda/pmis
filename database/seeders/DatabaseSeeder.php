@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MunicipalitySeeder::class);
         $this->call(ProjectTypeSeeder::class);
         $this->call(BudgetSourceSeeder::class);
+        $this->call(FiscalYearSeeder::class);
     }
 }

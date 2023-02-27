@@ -16,7 +16,7 @@ class CreateFiscalYearsTable extends Migration
         Schema::create('fiscal_years', function (Blueprint $table) {
             $table->id();
             $table->string('slug');
-            $table->string('fiscal-year');
+            $table->string('fiscal_year')->unique();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
