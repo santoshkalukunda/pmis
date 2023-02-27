@@ -67,8 +67,8 @@
                 </li>
                 <li class="nav-header">Settings</li>
                 <li class="nav-item">
-                    <a href="{{route('offices.index')}}" class="nav-link text-white">
-                        <i class="fas fa-circle nav-icon"></i>
+                    <a href="{{ route('offices.index') }}" class="nav-link text-white">
+                        <i class="bi bi-buildings nav-icon"></i>
                         <p>कार्यालयहरू</p>
                     </a>
                 </li>
