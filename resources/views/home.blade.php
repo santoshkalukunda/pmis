@@ -13,7 +13,7 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        {{ Session::get('website_name') }}
+                        <livewire:active-fiscal-year />
                         {{ __('You are logged in!') }}
                     </div>
                 </div>

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ActiveFiscalYear;
 use App\Models\FiscalYear;
 use Illuminate\Database\Seeder;
 
@@ -34,5 +35,8 @@ class FiscalYearSeeder extends Seeder
         foreach ($fiscalYears as $fiscalYear) {
             FiscalYear::firstOrCreate($fiscalYear);
         }
+        ActiveFiscalYear::firstOrCreate([
+            'fiscal_year_id' => 1,
+        ]);
     }
 }

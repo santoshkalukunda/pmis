@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{env('APP_NAME')}} | {{$title}}</title>
-    <link rel="icon" type="image/x-icon" href="{{asset('img/logo.png')}}">
+    <title>{{ env('APP_NAME') }} | {{ $title }}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/logo.png') }}">
     @include('layouts.styles')
 </head>
 
@@ -27,9 +27,22 @@
                             class="fas fa-bars"></i></a>
                 </li>
             </ul>
+
+            {{-- <ul class="navbar-nav ml-auto">
+                <!-- Navbar Search -->
+                <li class="nav-item">
+
+                </li>
+            </ul> --}}
+            <div class="navbar-nav ml-auto">
+                <livewire:active-fiscal-year-button />
+            </div>
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+
         </nav>
         <!-- /.navbar -->
-
         <!-- Main Sidebar Container -->
         @include('layouts.sidebar')
 

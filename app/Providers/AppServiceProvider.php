@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\ActiveFiscalYear;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
 
@@ -24,6 +27,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Session::put('website_name', 'Value Goes Here');
+        $activeFiscalYear = ActiveFiscalYear::first();
+        Session::put('active_fiscal_year', $activeFiscalYear->fiscal_year_id);
     }
 }

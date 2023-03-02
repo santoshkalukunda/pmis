@@ -17,7 +17,7 @@ class FiscalYear extends Model
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-            ->generateSlugsFrom('fiscal-year')
+            ->generateSlugsFrom('fiscal_year')
             ->saveSlugsTo('slug')
             ->doNotGenerateSlugsOnUpdate();
     }
@@ -25,5 +25,10 @@ class FiscalYear extends Model
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function activeFiscalYear()
+    {
+        return $this->hasMeny(ActiveFiscalYear::class,'fiscal_year_id');
     }
 }
