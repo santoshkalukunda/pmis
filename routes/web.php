@@ -4,6 +4,7 @@ use App\Http\Controllers\ActiveFiscalYearController;
 use App\Http\Controllers\BudgetSourceController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -49,3 +50,16 @@ Route::delete('fiscal-years/{fiscalYear}', [FiscalYearController::class, 'destro
 
 //active fiscal year
 Route::post('active-fiscal-years', [ActiveFiscalYearController::class, 'store'])->name('active-fiscal-years.store');
+
+//project
+Route::get('projects/offices', [ProjectController::class, 'office'])->name('projects.offices');
+Route::get('projects/{office}/secondlevel', [ProjectController::class, 'secondlevel'])->name('projects.secondlevel');
+Route::get('projects/{office}', [ProjectController::class, 'index'])->name('projects.index');
+
+Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
+
+Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
+Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
+Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
+Route::put('projects/{office}/{project}', [ProjectController::class, 'update'])->name('projects.update');
+Route::delete('projects/{office}/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');

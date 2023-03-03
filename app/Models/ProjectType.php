@@ -11,4 +11,8 @@ class ProjectType extends Model
     use HasFactory, Userstamps;
 
     protected $guarded = ['id'];
+
+    public function project(){
+        return $this->hasMany(Project::class,'project_type_id');
+    }
 }

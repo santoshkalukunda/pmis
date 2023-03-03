@@ -39,14 +39,14 @@ class ActiveFiscalYearController extends Controller
      */
     public function store(StoreActiveFiscalYearRequest $request)
     {
-        $user = User::findOrFail(Auth::user()->id);
-        $activeFiscalYear = $user->activeFiscalYear()->first();
-        if ($activeFiscalYear) {
-            $user->activeFiscalYear()->update($request->validated());
-        } else {
-            $user->activeFiscalYear()->create($request->validated());
-        }
-        return redirect()->back();
+        // $user = User::findOrFail(Auth::user()->id);
+        // $activeFiscalYear = $user->activeFiscalYear()->first();
+        // if ($activeFiscalYear) {
+        //     $user->activeFiscalYear()->update($request->validated());
+        // } else {
+        //     $user->activeFiscalYear()->create($request->validated());
+        // }
+        // return redirect()->back();
     }
 
     /**

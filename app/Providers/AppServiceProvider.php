@@ -27,7 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $activeFiscalYear = ActiveFiscalYear::first();
-        Session::put('active_fiscal_year', $activeFiscalYear->fiscal_year_id);
+        
     }
 }

@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function activeFiscalYear(){
         return $this->hasOne(ActiveFiscalYear::class,'created_by');
     }
+    
+    public function project(){
+        return $this->hasMany(Project::class,'created_by');
+    }
 }

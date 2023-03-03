@@ -41,4 +41,8 @@ class Office extends Model
     {
         return $this->hasMany(Office::class, 'parent_id');
     }
+
+    public function project(){
+        return $this->hasMany(Project::class,'office_id');
+    }
 }

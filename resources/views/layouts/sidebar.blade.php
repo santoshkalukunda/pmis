@@ -32,7 +32,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="pages/widgets.html" class="nav-link text-white">
+                    <a href="{{route('projects.offices')}}" class="nav-link text-white">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             आयोजना

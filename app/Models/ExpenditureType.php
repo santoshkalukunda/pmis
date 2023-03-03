@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Wildside\Userstamps\Userstamps;
 
-class BudgetSource extends Model
+class ExpenditureType extends Model
 {
     use HasFactory, Userstamps;
 
     protected $guarded = ['id'];
 
     public function project(){
-        return $this->hasMany(Project::class,'budget_source_id');
+        return $this->hasMany(Project::class,'expenditure_type_id');
     }
 }

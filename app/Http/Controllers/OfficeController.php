@@ -20,9 +20,12 @@ class OfficeController extends Controller
         }
         // $parentOffices = Office::with(['childCategories'])->where('parent_id', null)->active()->orderBy('name')->get();
 
-        $offices = Office::with(['childOffices'])->where('parent_id', null)->orderBy('name')->get();
+        $offices = Office::with(['childOffices'])
+            ->where('parent_id', null)
+            ->orderBy('name')
+            ->get();
 
-        return view('office.index',compact('office', 'offices'));
+        return view('office.index', compact('office', 'offices'));
     }
 
     /**
@@ -32,7 +35,6 @@ class OfficeController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -44,8 +46,9 @@ class OfficeController extends Controller
     public function store(StoreOfficeRequest $request)
     {
         Office::create($request->validated());
-        return redirect()->route('offices.index')->with('success',"Office Created");
-        
+        return redirect()
+            ->route('offices.index')
+            ->with('success', 'Office Created');
     }
 
     /**
@@ -68,7 +71,6 @@ class OfficeController extends Controller
     public function edit(Office $office)
     {
         return $this->index($office);
-    
     }
 
     /**
@@ -81,7 +83,9 @@ class OfficeController extends Controller
     public function update(UpdateOfficeRequest $request, Office $office)
     {
         $office->update($request->validated());
-        return redirect()->route('offices.index')->with('success','Office Updated');
+        return redirect()
+            ->route('offices.index')
+            ->with('success', 'Office Updated');
     }
 
     /**
@@ -93,6 +97,8 @@ class OfficeController extends Controller
     public function destroy(Office $office)
     {
         $office->delete();
-        return redirect()->back()->with('success','Office Deleted');
+        return redirect()
+            ->back()
+            ->with('success', 'Office Deleted');
     }
 }
