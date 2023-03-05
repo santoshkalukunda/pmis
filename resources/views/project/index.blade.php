@@ -52,12 +52,14 @@
                                             <td>{{ $project->expenditureType->name }}</td>
                                             <td>{{ $project->expenditure_subtitle }}</td>
                                             <td class="text-right">{{ $project->population_to_be_benefited }}</td>
-                                            <td>{{ $project->agreement_date }}</td>
+                                            <td>
+                                                <div id="agreement_date-{{ $project->id }}"></div>
+                                            </td>
                                             <td class="text-right">{{ $project->tender_amount }}</td>
-                                            <td>{{ $project->project_start_date }}</td>
+                                            <td><div id="project_start_date-{{ $project->id}}"></div></td>
                                             <td class="text-right">{{ $project->physical_progress }}</td>
                                             <td>{{ $project->status == true ? 'सम्पन्न भइसकेको छ' : 'काम भइरहेको छ' }}</td>
-                                            <td>{{ $project->project_completion_date }}</td>
+                                            <td><div id="project_completion_date-{{ $project->id}}"></div></td>
 
                                             <td class="text-center">
                                                 <div class="">
@@ -71,7 +73,8 @@
                                                                 href="{{ route('projects.edit', [$office, $project]) }}">Edit</a>
                                                         </li>
                                                         <li>
-                                                            <form action="{{ route('projects.destroy', [$office, $project]) }}"
+                                                            <form
+                                                                action="{{ route('projects.destroy', [$office, $project]) }}"
                                                                 method="post">
                                                                 @method('delete')
                                                                 @csrf
@@ -87,6 +90,20 @@
 
                                             </td>
                                         </tr>
+                                        @push('scripts')
+                                            <script>
+                                                $(document).ready(function() {
+                                                    agreement_date=NepaliFunctions.AD2BS("{{ $project->agreement_date }}");
+                                                    document.getElementById("agreement_date-{{ $project->id }}").innerHTML = agreement_date;
+
+                                                    project_start_date=NepaliFunctions.AD2BS("{{ $project->project_start_date }}");
+                                                    document.getElementById("project_start_date-{{ $project->id}}").innerHTML = project_start_date;
+                                            
+                                                    project_completion_date=NepaliFunctions.AD2BS("{{ $project->project_completion_date }}");
+                                                    document.getElementById("project_completion_date-{{ $project->id}}").innerHTML = project_completion_date;
+                                                });
+                                            </script>
+                                        @endpush
                                     @empty
                                         <tr>
                                             <td colspan="20">
