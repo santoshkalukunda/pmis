@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ActiveFiscalYearController;
 use App\Http\Controllers\BudgetSourceController;
+use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\ProjectController;
@@ -63,3 +64,10 @@ Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'
 Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::put('projects/{office}/{project}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('projects/{office}/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+Route::get('projects/{office}/{project}/financial', [ProjectController::class, 'financial'])->name('projects.financial');
+Route::get('projects/{office}/{project}/financial/{financial}/edit', [ProjectController::class, 'financialEdit'])->name('projects.financial.edit');
+
+//financial
+Route::post('finacials/{project}', [FinancialController::class, 'store'])->name('financials.store');
+Route::put('finacials/{financial}', [FinancialController::class, 'update'])->name('financials.update');
+Route::delete('finacials/{financial}', [FinancialController::class, 'destroy'])->name('financials.destroy');

@@ -4,17 +4,18 @@
     <div class="text-center">{{ $project->projectType->name }}</div>
     <div class="text-center">{{ $project->municipality }}-{{ $project->ward_no }} ,{{ $project->district }}</div>
 </div>
-<ul class="nav nav-tabs bg-dark">
+<ul class="nav nav-tabs">
     <li class="nav-item">
-        <a class="nav-link {{ Request::is('projects/$office/$project') ? 'active' : '' }} active" aria-current="page"
-            href="#">विवरण</a>
+        <a class="nav-link text-dark {{ request()->routeIs('projects.show') ? 'active' : '' }}" aria-current="page"
+            href="{{route('projects.show',[$office, $project])}}">विवरण</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">उल्लेखनिए कार्यहरू</a>
+        <a class="nav-link text-dark  {{ request()->routeIs('projects.financial') ? 'active' : '' }}" href="{{route('projects.financial',[$office, $project])}}">आर्थिक प्रगति</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="#">आर्थिक प्रगति</a>
+        <a class="nav-link text-dark" href="#">उल्लेखनिए कार्यहरू</a>
     </li>
+   
     <li class="nav-item">
         <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
     </li>

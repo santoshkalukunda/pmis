@@ -7,6 +7,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\BudgetSource;
 use App\Models\ExpenditureType;
+use App\Models\Financial;
 use App\Models\FiscalYear;
 use App\Models\Office;
 use App\Models\ProjectType;
@@ -21,7 +22,10 @@ class ProjectController extends Controller
      */
     public function index(Office $office)
     {
-        $projects = $office->project()->latest()->get();
+        $projects = $office
+            ->project()
+            ->latest()
+            ->get();
         return view('project.index', compact('projects', 'office'));
     }
 
@@ -50,10 +54,8 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request, Office $office)
     {
-        $office->project()->create($request->validated());
-        return redirect()
-            ->back()
-            ->with('success', 'Project Created');
+        $project = $office->project()->create($request->validated());
+        return redirect()->route('projects.show',[$office, $project])->with('success', 'Project Created');
     }
 
     /**
@@ -64,7 +66,7 @@ class ProjectController extends Controller
      */
     public function show(Office $office, Project $project)
     {
-        return view('project.show',compact('project','office'));
+        return view('project.show', compact('project', 'office'));
     }
 
     /**
@@ -88,9 +90,7 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Office $office, Project $project)
     {
         $project->update($request->validated());
-        return redirect()
-            ->back()
-            ->with('success', 'Project Updated');
+        return redirect()->route('projects.show',[$office, $project])->with('success', 'Project Updated');
     }
 
     /**
@@ -127,5 +127,23 @@ class ProjectController extends Controller
     public function secondlevel(Office $office)
     {
         return $this->office($office);
+    }
+
+    public function financial(Office $office, Project $project, Financial $financial = null)
+    {
+        if (!$financial) {
+            $financial = new Financial();
+        }
+
+        $financials = $project
+            ->financial()
+            ->latest()
+            ->get();
+        return view('project.financial', compact('project', 'office', 'financials', 'financial'));
+    }
+
+    public function financialEdit(Office $office, Project $project, Financial $financial)
+    {
+        return $this->financial($office, $project, $financial);
     }
 }

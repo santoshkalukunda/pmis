@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function project(){
         return $this->hasMany(Project::class,'created_by');
     }
+    
+    public function financial(){
+        return $this->hasMany(Financial::class,'created_by');
+    }
 }

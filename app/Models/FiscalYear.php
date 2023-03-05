@@ -35,4 +35,8 @@ class FiscalYear extends Model
     public function project(){
         return $this->hasMany(Project::class,'fiscal_year_id');
     }
+    
+    public function financial(){
+        return $this->hasMany(Financial::class,'fiscal_year_id');
+    }
 }

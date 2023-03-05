@@ -1,14 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
-@php
-    $title = $project->name
-@endphp
+    @php
+        $title = $project->name;
+    @endphp
     <div class="container">
-        @include('project.nav')
         <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="d-flex flex-column mb-4 bg-white px-3 py-4">
+            @include('project.nav')
+            <div class="col-md-12 bg-white px-3 py-4">
+                <div class="text-right">
+                    <a href="{{ route('projects.edit', [$office, $project]) }}">
+                        Edit
+                    </a>
+                    
+                </div>
+                <div class="d-grid gap-3">
                     <div> <span class="text-bold">आयोजना सुरु भयको आ.ब. : </span>{{ $project->fiscalYear->fiscal_year }}
                     </div>
                     <div><span class="text-bold">बजेट स्रोत :</span> {{ $project->budgetSource->name }}</div>
@@ -25,10 +31,11 @@
                     <div> <span class="text-bold">आयोजना समाप्त मिति: </span><span id="project_completion_date_bs"></span>
                     </div>
                     <div class="my-2">
+                        <div class="text-center">हालसम्मको भौतिक प्रगति</div>
                         <div class="progress" style="height: 30px;">
                             <div class="progress-bar" role="progressbar" style="width: {{ $project->physical_progress }}%;"
                                 aria-valuenow="{{ $project->physical_progress }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $project->physical_progress }}% हालसम्मको भौतिक प्रगति</div>
+                                {{ $project->physical_progress }}%</div>
                         </div>
                     </div>
                     <div>

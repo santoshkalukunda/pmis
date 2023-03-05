@@ -53,4 +53,7 @@ class Project extends Model
         return $this->belongsTo(ExpenditureType::class);
     }
 
+    public function financial(){
+        return $this->hasMany(Financial::class,'project_id');
+    }
 }

@@ -23,7 +23,7 @@ class ProjectActiveFiscalYear extends Component
     public function render()
     {
         $fiscalYears = FiscalYear::get();
-        if ($this->fiscalYear) {
+        if (request()->routeIs('projects.edit')) {
             $this->activeFiscalYear = $this->fiscalYear;
         }else{
             $this->activeFiscalYear = Session::get('active_fiscal_year');
