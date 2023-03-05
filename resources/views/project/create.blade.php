@@ -14,7 +14,7 @@
                     <div class="card-header">{{ $title = 'नयाँ आयोजना' }}</div>
                     <div class="card-body">
                         <form
-                            action="{{ $project->id ? route('projects.update',[$office, $project]) : route('projects.store', $office) }}"
+                            action="{{ $project->id ? route('projects.update', [$office, $project]) : route('projects.store', $office) }}"
                             method="post">
                             @csrf
                             @if ($project->id)
@@ -271,7 +271,8 @@
                                                     id="status" aria-describedby="status"
                                                     onchange="handleOptionChange(event)">
                                                     <option value="0">काम भइरहेको छ</option>
-                                                    <option value="1">सम्पन्न भइसकेको छ</option>
+                                                    <option value="1" {{ $project->status == 1 ? 'selected' : '' }}>
+                                                        सम्पन्न भइसकेको छ</option>
                                                 </select>
                                                 <div class="invalid-feedback">
                                                     @error('status')
@@ -322,7 +323,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="ADConvert()">{{$project->id ? "Update" : "Save"}}</button>
+                            <button type="submit" class="btn btn-primary"
+                                onclick="ADConvert()">{{ $project->id ? 'Update' : 'Save' }}</button>
                         </form>
                     </div>
                 </div>
@@ -333,6 +335,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
+
             $('#description').summernote();
             $('#agreement_date_bs').nepaliDatePicker({
                 ndpYear: true,
@@ -346,8 +349,6 @@
                 ndpYearCount: 100
 
             });
-            var x = document.getElementById("project_complete");
-            x.style.display = "none";
 
             document.getElementById('agreement_date_bs').value = NepaliFunctions.AD2BS(
                 "{{ $project->agreement_date }}");
@@ -355,6 +356,15 @@
                 "{{ $project->project_start_date }}");
             document.getElementById('project_completion_date_bs').value = NepaliFunctions.AD2BS(
                 "{{ $project->project_completion_date }}");
+
+            var x = document.getElementById("project_complete");
+            if ("{{ $project->status }}" === 1) {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+                document.getElementById("project_completion_date_bs").value = "";
+                document.getElementById("project_completion_date").value = "";
+            }
 
         });
 
