@@ -36,7 +36,7 @@
                     $name = '';
                 @endphp
                 <label for="municipality" class="form-label required">स्थानीय तह</label>
-                <select name="municipality" class="form-control @error('municipality') is-invalid @enderror" id="municipality"
+                <select name="municipality" wire:model ="municipality" class="form-control @error('municipality') is-invalid @enderror" id="municipality"
                     aria-describedby="municipality">
                     <option value="">स्थानीय तह छान्नुहोस्</option>
                     @foreach ($municipalities as $municipality)

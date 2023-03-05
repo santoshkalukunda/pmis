@@ -13,7 +13,6 @@
                                 {{ session('status') }}
                             </div>
                         @endif
-                        <livewire:active-fiscal-year />
                         {{ __('You are logged in!') }}
                     </div>
                 </div>

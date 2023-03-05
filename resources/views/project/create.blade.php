@@ -7,7 +7,7 @@
                 <a href="{{ route('projects.offices') }}" class="btn btn-success z-depth-0">Back</a>
             </div>
         </div> --}}
-        <h4 class="text-center py-3">{{$office->name}}मा नयाँ आयोजना दर्ता</h4>
+        <h4 class="text-center py-3">{{ $office->name }}मा नयाँ आयोजना दर्ता</h4>
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="card">
@@ -16,7 +16,7 @@
                         <form action="{{ route('projects.store', $office) }}" method="post">
                             @csrf
                             <div class="row">
-                                <livewire:project-municipality />
+                                <livewire:project-municipality :project="$project" />
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="ward_no" class="form-label required">वडा नम्बर</label>
@@ -33,7 +33,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <livewire:project-active-fiscal-year />
+                                    <livewire:project-active-fiscal-year :fiscalYear="$project->fiscal_year_id" />
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
@@ -58,7 +58,7 @@
                                             id="project_type_id" aria-describedby="project_type_id">
                                             <option value="">आयोजनाको किसिम छान्नुहोस्</option>
                                             @foreach ($projectTypes as $projectType)
-                                                <option value="{{ $projectType->id }}">{{ $projectType->name }}</option>
+                                                <option value="{{ $projectType->id }}" {{ $projectType->id == $project->project_type_id ? "selected" : "" }}>{{ $projectType->name }}</option>
                                             @endforeach
                                         </select>
                                         <div class="invalid-feedback">
@@ -77,7 +77,7 @@
                                             id="budget_source_id" aria-describedby="budget_source_id">
                                             <option value="">बजेट स्रोत छान्नुहोस्</option>
                                             @foreach ($budgetSources as $budgetSource)
-                                                <option value="{{ $budgetSource->id }}">{{ $budgetSource->name }}</option>
+                                                <option value="{{ $budgetSource->id }}" {{ $budgetSource->id == $project->budget_source_id ? "selected" : "" }}>{{ $budgetSource->name }}</option>
                                             @endforeach
                                         </select>
                                         <div class="invalid-feedback">
@@ -129,7 +129,7 @@
                                             id="expenditure_type_id" aria-describedby="expenditure_type_id">
                                             <option value="">खर्चको किसिम छान्नुहोस्</option>
                                             @foreach ($expenditureTypes as $expenditureType)
-                                                <option value="{{ $expenditureType->id }}">{{ $expenditureType->name }}
+                                                <option value="{{ $expenditureType->id }}" {{$expenditureType->id == $project->expenditure_type_id ? "Selected" : ""}}>{{ $expenditureType->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -255,7 +255,7 @@
                                             <div class="mb-3">
                                                 <label for="status" class="form-label required">आयोजनाको
                                                     स्थिति</label>
-                                                <select name="status" wire:model="status"
+                                                <select name="status"
                                                     class="form-control @error('status') is-invalid @enderror"
                                                     id="status" aria-describedby="status"
                                                     onchange="handleOptionChange(event)">
@@ -285,7 +285,8 @@
                                                     class="form-control @error('project_completion_date') is-invalid @enderror"
                                                     value="{{ old('project_completion_date') }}"
                                                     id="project_completion_date"
-                                                    aria-describedby="project_completion_date" placeholder="YYYY-MM-DD" hidden>
+                                                    aria-describedby="project_completion_date" placeholder="YYYY-MM-DD"
+                                                    hidden>
                                                 <div class="invalid-feedback">
                                                     @error('project_completion_date_bs')
                                                         {{ $message }}
@@ -336,6 +337,14 @@
             });
             var x = document.getElementById("project_complete");
             x.style.display = "none";
+
+            document.getElementById('agreement_date_bs').value = NepaliFunctions.AD2BS(
+                "{{ $project->agreement_date }}");
+            document.getElementById('project_start_date_bs').value = NepaliFunctions.AD2BS(
+                "{{ $project->project_start_date }}");
+            document.getElementById('project_completion_date_bs').value = NepaliFunctions.AD2BS(
+                "{{ $project->project_completion_date }}");
+
         });
 
         function ADConvert() {
@@ -360,14 +369,20 @@
                 x.style.display = "block";
             } else {
                 x.style.display = "none";
+                document.getElementById("project_completion_date_bs").value = "";
+                document.getElementById("project_completion_date").value = "";
             }
             $('#project_completion_date_bs').nepaliDatePicker({
 
                 ndpYear: true,
                 ndpMonth: true,
                 ndpYearCount: 100
-
             });
+        }
+
+        function myFunction() {
+            var x = document.getElementById("mySelect").value;
+            document.getElementById("demo").innerHTML = "You selected: " + x;
         }
     </script>
 @endpush
