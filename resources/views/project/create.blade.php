@@ -13,8 +13,13 @@
                 <div class="card">
                     <div class="card-header">{{ $title = 'नयाँ आयोजना' }}</div>
                     <div class="card-body">
-                        <form action="{{ route('projects.store', $office) }}" method="post">
+                        <form
+                            action="{{ $project->id ? route('projects.update',[$office, $project]) : route('projects.store', $office) }}"
+                            method="post">
                             @csrf
+                            @if ($project->id)
+                                @method('put')
+                            @endif
                             <div class="row">
                                 <livewire:project-municipality :project="$project" />
                                 <div class="col-md-4">
@@ -58,7 +63,9 @@
                                             id="project_type_id" aria-describedby="project_type_id">
                                             <option value="">आयोजनाको किसिम छान्नुहोस्</option>
                                             @foreach ($projectTypes as $projectType)
-                                                <option value="{{ $projectType->id }}" {{ $projectType->id == $project->project_type_id ? "selected" : "" }}>{{ $projectType->name }}</option>
+                                                <option value="{{ $projectType->id }}"
+                                                    {{ $projectType->id == $project->project_type_id ? 'selected' : '' }}>
+                                                    {{ $projectType->name }}</option>
                                             @endforeach
                                         </select>
                                         <div class="invalid-feedback">
@@ -77,7 +84,9 @@
                                             id="budget_source_id" aria-describedby="budget_source_id">
                                             <option value="">बजेट स्रोत छान्नुहोस्</option>
                                             @foreach ($budgetSources as $budgetSource)
-                                                <option value="{{ $budgetSource->id }}" {{ $budgetSource->id == $project->budget_source_id ? "selected" : "" }}>{{ $budgetSource->name }}</option>
+                                                <option value="{{ $budgetSource->id }}"
+                                                    {{ $budgetSource->id == $project->budget_source_id ? 'selected' : '' }}>
+                                                    {{ $budgetSource->name }}</option>
                                             @endforeach
                                         </select>
                                         <div class="invalid-feedback">
@@ -129,7 +138,9 @@
                                             id="expenditure_type_id" aria-describedby="expenditure_type_id">
                                             <option value="">खर्चको किसिम छान्नुहोस्</option>
                                             @foreach ($expenditureTypes as $expenditureType)
-                                                <option value="{{ $expenditureType->id }}" {{$expenditureType->id == $project->expenditure_type_id ? "Selected" : ""}}>{{ $expenditureType->name }}
+                                                <option value="{{ $expenditureType->id }}"
+                                                    {{ $expenditureType->id == $project->expenditure_type_id ? 'Selected' : '' }}>
+                                                    {{ $expenditureType->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -311,7 +322,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="ADConvert()">Save</button>
+                            <button type="submit" class="btn btn-primary" onclick="ADConvert()">{{$project->id ? "Update" : "Save"}}</button>
                         </form>
                     </div>
                 </div>

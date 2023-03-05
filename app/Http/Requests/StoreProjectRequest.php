@@ -40,7 +40,7 @@ class StoreProjectRequest extends FormRequest
             'tender_amount' => 'nullable',
             'project_start_date' => 'nullable|date',
             'physical_progress' => 'nullable',
-            'status' => 'required',
+            'status' => 'required|boolean',
             'project_completion_date' => 'nullable|date',
             'description' => 'nullable',
         ];

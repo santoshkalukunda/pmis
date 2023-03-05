@@ -53,7 +53,7 @@ class ProjectController extends Controller
         $office->project()->create($request->validated());
         return redirect()
             ->back()
-            ->with('success', 'projected Created');
+            ->with('success', 'Project Created');
     }
 
     /**
@@ -85,9 +85,12 @@ class ProjectController extends Controller
      * @param  \App\Models\Project  $project
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, Office $office, Project $project)
     {
-        //
+        $project->update($request->validated());
+        return redirect()
+            ->back()
+            ->with('success', 'Project Updated');
     }
 
     /**
