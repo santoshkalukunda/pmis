@@ -362,8 +362,6 @@
                 x.style.display = "block";
             } else {
                 x.style.display = "none";
-                document.getElementById("project_completion_date_bs").value = "";
-                document.getElementById("project_completion_date").value = "";
             }
 
         });
@@ -380,6 +378,17 @@
             //project compeletion date bs to ad
             var project_completion_date_bs = document.getElementById('project_completion_date_bs').value;
             document.getElementById('project_completion_date').value = NepaliFunctions.BS2AD(project_completion_date_bs);
+            
+            
+            var x = document.getElementById("project_complete");
+            console.log(x);
+            if (selectedOption === '1') {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+                document.getElementById("project_completion_date_bs").value = "";
+                document.getElementById("project_completion_date").value = "";
+            }
 
         }
 
@@ -390,8 +399,6 @@
                 x.style.display = "block";
             } else {
                 x.style.display = "none";
-                document.getElementById("project_completion_date_bs").value = "";
-                document.getElementById("project_completion_date").value = "";
             }
             $('#project_completion_date_bs').nepaliDatePicker({
 
@@ -399,11 +406,6 @@
                 ndpMonth: true,
                 ndpYearCount: 100
             });
-        }
-
-        function myFunction() {
-            var x = document.getElementById("mySelect").value;
-            document.getElementById("demo").innerHTML = "You selected: " + x;
         }
     </script>
 @endpush
