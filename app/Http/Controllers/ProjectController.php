@@ -64,7 +64,7 @@ class ProjectController extends Controller
      */
     public function show(Office $office, Project $project)
     {
-        return $project;
+        return view('project.show',compact('project','office'));
     }
 
     /**
