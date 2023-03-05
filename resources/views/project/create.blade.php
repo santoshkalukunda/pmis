@@ -357,11 +357,13 @@
             document.getElementById('project_completion_date_bs').value = NepaliFunctions.AD2BS(
                 "{{ $project->project_completion_date }}");
 
+
             var x = document.getElementById("project_complete");
-            if ("{{ $project->status }}" === 1) {
+            x.style.display = "none";
+            var status = "{{ $project->status }}";
+
+            if (status == 1) {
                 x.style.display = "block";
-            } else {
-                x.style.display = "none";
             }
 
         });
@@ -378,18 +380,12 @@
             //project compeletion date bs to ad
             var project_completion_date_bs = document.getElementById('project_completion_date_bs').value;
             document.getElementById('project_completion_date').value = NepaliFunctions.BS2AD(project_completion_date_bs);
-            
-            
-            var x = document.getElementById("project_complete");
-            console.log(x);
-            if (selectedOption === '1') {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-                document.getElementById("project_completion_date_bs").value = "";
-                document.getElementById("project_completion_date").value = "";
+          
+            var status = document.getElementById("status").value;
+            if (status == 0) {
+                document.getElementById('project_completion_date_bs').value = "";
+                document.getElementById('project_completion_date').value ="";
             }
-
         }
 
         function handleOptionChange(event) {
