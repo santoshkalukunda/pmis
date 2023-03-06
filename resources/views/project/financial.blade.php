@@ -82,7 +82,11 @@
                     $(document).ready(function() {
                         if ("{{ $financial->id }}") {
                             document.getElementById('date_bs').value = NepaliFunctions.AD2BS("{{ $financial->date }}");
+                        }else{
+                            document.getElementById('date_bs').value = NepaliFunctions.AD2BS("{{ date('Y-m-d') }}");
+                        
                         }
+
                     });
                 </script>
             @endpush
@@ -161,6 +165,8 @@
                 ndpMonth: true,
                 ndpYearCount: 100
             });
+
+
         });
 
         function ADConvert() {

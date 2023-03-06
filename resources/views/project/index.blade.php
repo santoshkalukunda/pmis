@@ -40,7 +40,10 @@
                                 <tbody>
                                     @forelse ($projects as $project)
                                         <tr>
-                                            <td>{{ $project->name }}</td>
+                                            <td><a class=""
+                                                    href="{{ route('projects.show', [$office, $project]) }}">{{ $project->name }}
+                                                </a>
+                                            </td>
                                             <td>{{ $project->projectType->name }}</td>
                                             <td>{{ $project->district }}</td>
                                             <td>{{ $project->municipality }}</td>
@@ -56,10 +59,14 @@
                                                 <div id="agreement_date-{{ $project->id }}"></div>
                                             </td>
                                             <td class="text-right">{{ $project->tender_amount }}</td>
-                                            <td><div id="project_start_date-{{ $project->id}}"></div></td>
+                                            <td>
+                                                <div id="project_start_date-{{ $project->id }}"></div>
+                                            </td>
                                             <td class="text-right">{{ $project->physical_progress }}</td>
                                             <td>{{ $project->status == true ? 'सम्पन्न भइसकेको छ' : 'काम भइरहेको छ' }}</td>
-                                            <td><div id="project_completion_date-{{ $project->id}}"></div></td>
+                                            <td>
+                                                <div id="project_completion_date-{{ $project->id }}"></div>
+                                            </td>
 
                                             <td class="text-center">
                                                 <div class="">
@@ -93,14 +100,15 @@
                                         @push('scripts')
                                             <script>
                                                 $(document).ready(function() {
-                                                    agreement_date=NepaliFunctions.AD2BS("{{ $project->agreement_date }}");
+                                                    agreement_date = NepaliFunctions.AD2BS("{{ $project->agreement_date }}");
                                                     document.getElementById("agreement_date-{{ $project->id }}").innerHTML = agreement_date;
 
-                                                    project_start_date=NepaliFunctions.AD2BS("{{ $project->project_start_date }}");
-                                                    document.getElementById("project_start_date-{{ $project->id}}").innerHTML = project_start_date;
-                                            
-                                                    project_completion_date=NepaliFunctions.AD2BS("{{ $project->project_completion_date }}");
-                                                    document.getElementById("project_completion_date-{{ $project->id}}").innerHTML = project_completion_date;
+                                                    project_start_date = NepaliFunctions.AD2BS("{{ $project->project_start_date }}");
+                                                    document.getElementById("project_start_date-{{ $project->id }}").innerHTML = project_start_date;
+
+                                                    project_completion_date = NepaliFunctions.AD2BS("{{ $project->project_completion_date }}");
+                                                    document.getElementById("project_completion_date-{{ $project->id }}").innerHTML =
+                                                        project_completion_date;
                                                 });
                                             </script>
                                         @endpush
