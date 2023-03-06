@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Acheivement;
 use App\Models\BudgetSource;
 use App\Models\ExpenditureType;
 use App\Models\Financial;
@@ -55,7 +56,9 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request, Office $office)
     {
         $project = $office->project()->create($request->validated());
-        return redirect()->route('projects.show',[$office, $project])->with('success', 'Project Created');
+        return redirect()
+            ->route('projects.show', [$office, $project])
+            ->with('success', 'Project Created');
     }
 
     /**
@@ -90,7 +93,9 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Office $office, Project $project)
     {
         $project->update($request->validated());
-        return redirect()->route('projects.show',[$office, $project])->with('success', 'Project Updated');
+        return redirect()
+            ->route('projects.show', [$office, $project])
+            ->with('success', 'Project Updated');
     }
 
     /**
@@ -145,5 +150,22 @@ class ProjectController extends Controller
     public function financialEdit(Office $office, Project $project, Financial $financial)
     {
         return $this->financial($office, $project, $financial);
+    }
+
+    public function acheivement(Office $office, Project $project, Acheivement $acheivement = null)
+    {
+        if (!$acheivement) {
+            $acheivement = new Acheivement();
+        }
+
+        $acheivements = $project
+            ->acheivement()
+            ->orderBy('status')
+            ->get();
+        return view('project.acheivement', compact('project', 'office', 'acheivements', 'acheivement'));
+    }
+    public function acheivementEdit(Office $office, Project $project, Acheivement $acheivement)
+    {
+        return $this->acheivement($office, $project, $acheivement);
     }
 }

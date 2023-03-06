@@ -53,4 +53,8 @@ class User extends Authenticatable
     public function financial(){
         return $this->hasMany(Financial::class,'created_by');
     }
+
+    public function acheivement(){
+        return $this->hasMany(Acheivement::class,'created_by');
+    }
 }

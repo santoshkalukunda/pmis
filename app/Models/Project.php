@@ -56,4 +56,8 @@ class Project extends Model
     public function financial(){
         return $this->hasMany(Financial::class,'project_id');
     }
+
+    public function acheivement(){
+        return $this->hasMany(Acheivement::class,'project_id');
+    }
 }

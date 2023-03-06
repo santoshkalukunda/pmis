@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AcheivementController;
 use App\Http\Controllers\ActiveFiscalYearController;
 use App\Http\Controllers\BudgetSourceController;
 use App\Http\Controllers\FinancialController;
@@ -57,17 +58,28 @@ Route::get('projects/offices', [ProjectController::class, 'office'])->name('proj
 Route::get('projects/{office}/secondlevel', [ProjectController::class, 'secondlevel'])->name('projects.secondlevel');
 Route::get('projects/{office}', [ProjectController::class, 'index'])->name('projects.index');
 
-Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
 
+Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
 Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
 Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::put('projects/{office}/{project}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('projects/{office}/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
+
+
+//financial
 Route::get('projects/{office}/{project}/financial', [ProjectController::class, 'financial'])->name('projects.financial');
 Route::get('projects/{office}/{project}/financial/{financial}/edit', [ProjectController::class, 'financialEdit'])->name('projects.financial.edit');
 
-//financial
 Route::post('finacials/{project}', [FinancialController::class, 'store'])->name('financials.store');
 Route::put('finacials/{financial}', [FinancialController::class, 'update'])->name('financials.update');
 Route::delete('finacials/{financial}', [FinancialController::class, 'destroy'])->name('financials.destroy');
+
+//acheiments
+Route::get('projects/{office}/{project}/acheivement', [ProjectController::class, 'acheivement'])->name('projects.acheivement');
+Route::get('projects/{office}/{project}/acheivement/{acheivement}/edit', [ProjectController::class, 'acheivementEdit'])->name('projects.acheivement.edit');
+
+
+Route::post('acheivements/{project}', [AcheivementController::class, 'store'])->name('acheivements.store');
+Route::put('acheivements/{acheivement}', [AcheivementController::class, 'update'])->name('acheivements.update');
+Route::delete('acheivements/{acheivement}', [AcheivementController::class, 'destroy'])->name('acheivements.destroy');

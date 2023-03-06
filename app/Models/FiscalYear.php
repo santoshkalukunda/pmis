@@ -29,14 +29,21 @@ class FiscalYear extends Model
 
     public function activeFiscalYear()
     {
-        return $this->hasMeny(ActiveFiscalYear::class,'fiscal_year_id');
+        return $this->hasMeny(ActiveFiscalYear::class, 'fiscal_year_id');
     }
 
-    public function project(){
-        return $this->hasMany(Project::class,'fiscal_year_id');
+    public function project()
+    {
+        return $this->hasMany(Project::class, 'fiscal_year_id');
     }
-    
-    public function financial(){
-        return $this->hasMany(Financial::class,'fiscal_year_id');
+
+    public function financial()
+    {
+        return $this->hasMany(Financial::class, 'fiscal_year_id');
+    }
+
+    public function acheivement()
+    {
+        return $this->hasMany(Acheivement::class, 'fiscal_year_id');
     }
 }

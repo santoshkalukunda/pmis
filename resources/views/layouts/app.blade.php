@@ -60,7 +60,7 @@
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
-            <strong>Copyright &copy; {{ date('Y') }} <a href="http://smicaj.com/">smicaj.com</a>.</strong>
+            <strong>Copyright &copy; {{ date('Y') }} <a href="http://mopid.sudurpashchim.gov.np/"> भौतिक पूर्वाधार विकास मन्त्रालय</a></strong>
             All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
                 Powered By <a href="https://mohrain.com">Mohrain Websoft P. Ltd.</a>

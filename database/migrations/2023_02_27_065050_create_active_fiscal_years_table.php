@@ -15,7 +15,7 @@ class CreateActiveFiscalYearsTable extends Migration
     {
         Schema::create('active_fiscal_years', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('fiscal_year_id')->constrained('fiscal_years')->cascadeOnDelete();
+            $table->foreignId('fiscal_year_id')->constrained('fiscal_years')->cascadeOnUpdate()->cascadeOnDelete();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();

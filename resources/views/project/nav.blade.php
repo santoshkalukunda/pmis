@@ -13,7 +13,7 @@
         <a class="nav-link text-dark  {{ request()->routeIs('projects.financial') ? 'active' : '' }}" href="{{route('projects.financial',[$office, $project])}}">आर्थिक प्रगति</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" href="#">उल्लेखनिए कार्यहरू</a>
+        <a class="nav-link text-dark {{ request()->routeIs('projects.acheivement') ? 'active' : '' }}" href="{{route('projects.acheivement',[$office, $project])}}">उपलब्धिहरू</a>
     </li>
    
     <li class="nav-item">
