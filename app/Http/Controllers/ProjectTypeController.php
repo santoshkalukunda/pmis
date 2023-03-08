@@ -13,9 +13,15 @@ class ProjectTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ProjectType $projectType)
     {
-        //
+        if (!$projectType) {
+            $projectType = new ProjectType();
+        }
+
+        $projectTypes = ProjectType::latest()->get();
+
+        return view('project-type.index', compact('projectType', 'projectTypes'));
     }
 
     /**
@@ -36,7 +42,10 @@ class ProjectTypeController extends Controller
      */
     public function store(StoreProjectTypeRequest $request)
     {
-        //
+        ProjectType::create($request->validated());
+        return redirect()
+            ->route('project-types.index')
+            ->with('success', 'Project Type Created');
     }
 
     /**
@@ -58,7 +67,7 @@ class ProjectTypeController extends Controller
      */
     public function edit(ProjectType $projectType)
     {
-        //
+        return $this->index($projectType);
     }
 
     /**
@@ -70,7 +79,10 @@ class ProjectTypeController extends Controller
      */
     public function update(UpdateProjectTypeRequest $request, ProjectType $projectType)
     {
-        //
+        $projectType->update($request->validated());
+        return redirect()
+            ->route('project-types.index')
+            ->with('success', 'Project Type updated');
     }
 
     /**
@@ -81,6 +93,9 @@ class ProjectTypeController extends Controller
      */
     public function destroy(ProjectType $projectType)
     {
-        //
+        $projectType->delete();
+        return redirect()
+            ->route('project-types.index')
+            ->with('success', 'Project Type deleted');
     }
 }

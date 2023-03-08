@@ -85,6 +85,14 @@
                         <p>आर्थिक वर्ष</p>
                     </a>
                 </li>
+
+                <li class="nav-item">
+                    <a href="{{ route('project-types.index') }}" class="nav-link text-white">
+                        <i class="bi bi-diagram-3 nav-icon"></i>
+                        <p>आयोजनाको किसिम</p>
+                    </a>
+                </li>
+
                 <hr>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('logout') }}"

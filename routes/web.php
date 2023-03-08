@@ -8,6 +8,7 @@ use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectTypeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -50,6 +51,15 @@ Route::post('fiscal-years', [FiscalYearController::class, 'store'])->name('fisca
 Route::get('fiscal-years/{fiscalYear}/edit', [FiscalYearController::class, 'edit'])->name('fiscal-years.edit');
 Route::put('fiscal-years/{fiscalYear}', [FiscalYearController::class, 'update'])->name('fiscal-years.update');
 Route::delete('fiscal-years/{fiscalYear}', [FiscalYearController::class, 'destroy'])->name('fiscal-years.destroy');
+
+//Project-Type
+Route::get('project-types', [ProjectTypeController::class, 'index'])->name('project-types.index');
+Route::post('project-types', [ProjectTypeController::class, 'store'])->name('project-types.store');
+Route::get('project-types/{projectType}/edit', [ProjectTypeController::class, 'edit'])->name('project-types.edit');
+Route::put('project-types/{projectType}', [ProjectTypeController::class, 'update'])->name('project-types.update');
+Route::delete('project-types/{projectType}', [ProjectTypeController::class, 'destroy'])->name('project-types.destroy');
+
+
 
 //active fiscal year
 Route::post('active-fiscal-years', [ActiveFiscalYearController::class, 'store'])->name('active-fiscal-years.store');
