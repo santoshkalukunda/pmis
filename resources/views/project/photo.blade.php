@@ -15,7 +15,13 @@
                 overflow: hidden;
                 margin: 4px;
             }
-           
+
+            .delete {
+                background: rgb(244, 69, 46);
+                background: linear-gradient(90deg, rgba(244, 69, 46, 1) 0%, rgba(244, 69, 46, 0.025647759103641476) 43%, rgba(244, 69, 46, 0) 100%);
+                background: rgb(244, 69, 46);
+                background: linear-gradient(90deg, rgba(244, 69, 46, 0.7147233893557423) 100%, rgba(244, 69, 46, 0.025647759103641476) 100%, rgba(244, 69, 46, 0) 100%);
+            }
         </style>
     @endpush
     <div class="container">
@@ -48,11 +54,9 @@
                                     <form action="{{ route('photos.destroy', $photo) }}" method="post">
                                         @method('delete')
                                         @csrf
-                                        <button class="dropdown-item btn form-control text-white" type="submit"
-                                            onclick="return confirm('Are you sure to delete?')" style="background: rgb(244,69,46);
-                                            background: linear-gradient(90deg, rgba(244,69,46,1) 0%, rgba(244,69,46,0.025647759103641476) 43%, rgba(244,69,46,0) 100%);background: rgb(244,69,46);
-background: linear-gradient(90deg, rgba(244,69,46,0.7147233893557423) 100%, rgba(244,69,46,0.025647759103641476) 100%, rgba(244,69,46,0) 100%);">
-                                           <i class="bi bi-trash"></i>
+                                        <button class="dropdown-item btn form-control text-white delete" type="submit"
+                                            onclick="return confirm('Are you sure to delete?')">
+                                            <i class="bi bi-trash"></i>
                                         </button>
                                     </form>
                                 </div>
