@@ -20,6 +20,7 @@ class CreateFinancialsTable extends Migration
             $table->string('date');
             $table->string('amount');
             $table->text('remarks')->nullable();
+            $table->boolean('status')->default(false);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();

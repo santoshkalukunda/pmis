@@ -19,7 +19,7 @@
                         <div class="col-md-2">
                             <livewire:project-active-fiscal-year :fiscalYear="$financial->fiscal_year_id" />
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="date" class="form-label required">मिति</label>
                             <div class="input-group mb-3">
                                 <input type="text" class="form-control @error('date_bs') is-invalid @enderror"
@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                             <label for="amount" class="form-label required">रकम</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="amount">रु.</span>
@@ -70,6 +70,21 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <label for="status" class="form-label required">बजेट प्रकार</label>
+                            <select name="status" class="form-control @error('status') is-invalid @enderror" id="status"
+                                aria-describedby="status">
+                                <option value="0">खर्चहरु</option>
+                                <option value="1" {{ $financial->status == 1 ? 'selected' : '' }}>विनियोजित बजेट
+                                </option>
+                            </select>
+                            <div class="invalid-feedback">
+                                @error('status')
+                                    {{ $message }}
+                                @enderror
+
+                            </div>
+                        </div>
                         <div class="col-md-1 mt-4 py-2 md-mt-0 md-py-0">
                             <button type="submit" class="btn btn-primary"
                                 onclick="ADConvert()">{{ $financial->id ? 'Update' : 'Save' }}</button>
@@ -82,9 +97,9 @@
                     $(document).ready(function() {
                         if ("{{ $financial->id }}") {
                             document.getElementById('date_bs').value = NepaliFunctions.AD2BS("{{ $financial->date }}");
-                        }else{
+                        } else {
                             document.getElementById('date_bs').value = NepaliFunctions.AD2BS("{{ date('Y-m-d') }}");
-                        
+
                         }
 
                     });
@@ -96,17 +111,33 @@
                         <thead style="white-space: nowrap;">
                             <th>आ.ब.</th>
                             <th>मिति</th>
-                            <th>रकम</th>
+                            {{-- <th>रकम</th> --}}
                             <th>विवरण</th>
+                            <th class="text-right">विनियोजित बजेट</th>
+                            <th class="text-right">खर्चहरु</th>
                             <th>Action</th>
                         </thead>
                         <tbody>
+                            @php
+                                $totalAllocatedbudget = 0;
+                                $totalExpenditure = 0;
+                            @endphp
                             @forelse ($financials as $financial)
+                                @php
+                                    if ($financial->status == 1) {
+                                        $totalAllocatedbudget = $totalAllocatedbudget + $financial->amount;
+                                    } else {
+                                        $totalExpenditure = $totalExpenditure + $financial->amount;
+                                    }
+                                @endphp
                                 <tr>
                                     <td>{{ $financial->fiscalYear->fiscal_year }}</td>
                                     <td><span id="date-{{ $financial->id }}"></span></td>
-                                    <td>{{ $financial->amount }}</td>
+                                    {{-- <td>{{ $financial->amount }}</td> --}}
                                     <td>{{ $financial->remarks }}</td>
+                                    <td class="text-right">{{ $financial->status == 1 ? $financial->amount : '' }}</td>
+                                    <td class="text-right">{{ $financial->status == 0 ? $financial->amount : '' }}</td>
+
                                     <td>
                                         <div class="">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i
@@ -149,6 +180,17 @@
                                     </td>
                                 </tr>
                             @endforelse
+                            <tr>
+                                <td class="text-right" colspan="3">
+                                    जम्मा
+                                </td>
+                                <td class="text-right">
+                                    {{$totalAllocatedbudget}}
+                                </td>
+                                <td class="text-right">
+                                    {{$totalExpenditure}}
+                                </td>
+                            </tr>
                         </tbody>
 
                     </table>

@@ -28,6 +28,7 @@ class UpdateFinancialRequest extends FormRequest
             'amount' => 'required|numeric',
             'fiscal_year_id' => 'required',
             'remarks' => 'required',
+            'status' => 'required|boolean',
         ];
     }
 }

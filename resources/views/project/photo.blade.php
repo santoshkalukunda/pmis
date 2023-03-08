@@ -63,6 +63,9 @@
                             </div>
                         </div>
                     @empty
+                    <div class="text-red text-center">
+                        कुनै पनि डाटा उपलब्ध छैन
+                    </div>
                     @endforelse
                 </div>
             </div>
