@@ -92,7 +92,12 @@
                         <p>आयोजनाको किसिम</p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="{{ route('expenditure-types.index') }}" class="nav-link text-white">
+                        <i class="bi bi-diagram-2 nav-icon"></i>
+                        <p>खर्चको किसिम</p>
+                    </a>
+                </li>
                 <hr>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('logout') }}"

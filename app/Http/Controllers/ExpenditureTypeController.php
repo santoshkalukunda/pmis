@@ -13,9 +13,15 @@ class ExpenditureTypeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(ExpenditureType $expenditureType)
     {
-        //
+        if (!$expenditureType) {
+            $expenditureType = new ExpenditureType();
+        }
+
+        $expenditureTypes = ExpenditureType::latest()->get();
+
+        return view('expenditure-type.index', compact('expenditureType', 'expenditureTypes'));
     }
 
     /**
@@ -36,7 +42,10 @@ class ExpenditureTypeController extends Controller
      */
     public function store(StoreExpenditureTypeRequest $request)
     {
-        //
+        ExpenditureType::create($request->validated());
+        return redirect()
+            ->route('expenditure-types.index')
+            ->with('success', 'Expenditure Type Created');
     }
 
     /**
@@ -58,7 +67,7 @@ class ExpenditureTypeController extends Controller
      */
     public function edit(ExpenditureType $expenditureType)
     {
-        //
+        return $this->index($expenditureType);
     }
 
     /**
@@ -70,7 +79,10 @@ class ExpenditureTypeController extends Controller
      */
     public function update(UpdateExpenditureTypeRequest $request, ExpenditureType $expenditureType)
     {
-        //
+        $expenditureType->update($request->validated());
+        return redirect()
+            ->route('expenditure-types.index')
+            ->with('success', 'Expenditure Type updated');
     }
 
     /**
@@ -81,6 +93,9 @@ class ExpenditureTypeController extends Controller
      */
     public function destroy(ExpenditureType $expenditureType)
     {
-        //
+        $expenditureType->delete();
+        return redirect()
+            ->route('expenditure-types.index')
+            ->with('success', 'Expenditure Type deleted');
     }
 }

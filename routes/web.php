@@ -3,6 +3,7 @@
 use App\Http\Controllers\AcheivementController;
 use App\Http\Controllers\ActiveFiscalYearController;
 use App\Http\Controllers\BudgetSourceController;
+use App\Http\Controllers\ExpenditureTypeController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\OfficeController;
@@ -59,6 +60,13 @@ Route::get('project-types/{projectType}/edit', [ProjectTypeController::class, 'e
 Route::put('project-types/{projectType}', [ProjectTypeController::class, 'update'])->name('project-types.update');
 Route::delete('project-types/{projectType}', [ProjectTypeController::class, 'destroy'])->name('project-types.destroy');
 
+
+//Expenditure-Type
+Route::get('expenditure-types', [ExpenditureTypeController::class, 'index'])->name('expenditure-types.index');
+Route::post('expenditure-types', [ExpenditureTypeController::class, 'store'])->name('expenditure-types.store');
+Route::get('expenditure-types/{expenditureType}/edit', [ExpenditureTypeController::class, 'edit'])->name('expenditure-types.edit');
+Route::put('expenditure-types/{expenditureType}', [ExpenditureTypeController::class, 'update'])->name('expenditure-types.update');
+Route::delete('expenditure-types/{expenditureType}', [ExpenditureTypeController::class, 'destroy'])->name('expenditure-types.destroy');
 
 
 //active fiscal year
