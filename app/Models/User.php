@@ -57,4 +57,8 @@ class User extends Authenticatable
     public function acheivement(){
         return $this->hasMany(Acheivement::class,'created_by');
     }
+
+    public function photo(){
+        return $this->hasMany(Photo::class,'created_by');
+    }
 }

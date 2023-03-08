@@ -168,4 +168,13 @@ class ProjectController extends Controller
     {
         return $this->acheivement($office, $project, $acheivement);
     }
+
+    public function photo(Office $office, Project $project)
+    {
+        $photos = $project
+            ->photo()
+            ->latest()
+            ->get();
+        return view('project.photo', compact('project', 'office', 'photos'));
+    }
 }

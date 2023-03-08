@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+<link rel="stylesheet" href="{{ asset('lightgallery/css/lightgallery-bundle.css') }}">
 <link rel="stylesheet" href="{{ asset('nepali-datepicker/css/nepali.datepicker.v4.0.1.min.css') }}">
-
 @livewireStyles
 @stack('styles')

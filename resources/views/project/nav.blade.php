@@ -17,6 +17,6 @@
     </li>
    
     <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-link text-dark {{ request()->routeIs('projects.photos') ? 'active' : '' }}" href="{{route('projects.photos',[$office, $project])}}">तस्बीरहरू</a>
     </li>
 </ul>

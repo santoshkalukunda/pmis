@@ -6,5 +6,6 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('nepali-datepicker/js/nepali.datepicker.v4.0.1.min.js') }}"></script>
+    <script src="{{ asset('lightgallery/lightgallery.min.js') }}"></script>
     @livewireScripts
     @stack('scripts')

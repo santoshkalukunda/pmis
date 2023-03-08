@@ -6,6 +6,7 @@ use App\Http\Controllers\BudgetSourceController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\OfficeController;
+use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -58,14 +59,12 @@ Route::get('projects/offices', [ProjectController::class, 'office'])->name('proj
 Route::get('projects/{office}/secondlevel', [ProjectController::class, 'secondlevel'])->name('projects.secondlevel');
 Route::get('projects/{office}', [ProjectController::class, 'index'])->name('projects.index');
 
-
 Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
 Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
 Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
 Route::put('projects/{office}/{project}', [ProjectController::class, 'update'])->name('projects.update');
 Route::delete('projects/{office}/{project}', [ProjectController::class, 'destroy'])->name('projects.destroy');
-
 
 //financial
 Route::get('projects/{office}/{project}/financial', [ProjectController::class, 'financial'])->name('projects.financial');
@@ -76,10 +75,15 @@ Route::put('finacials/{financial}', [FinancialController::class, 'update'])->nam
 Route::delete('finacials/{financial}', [FinancialController::class, 'destroy'])->name('financials.destroy');
 
 //acheiments
-Route::get('projects/{office}/{project}/acheivement', [ProjectController::class, 'acheivement'])->name('projects.acheivement');
-Route::get('projects/{office}/{project}/acheivement/{acheivement}/edit', [ProjectController::class, 'acheivementEdit'])->name('projects.acheivement.edit');
-
+Route::get('projects/{office}/{project}/acheivements', [ProjectController::class, 'acheivement'])->name('projects.acheivement');
+Route::get('projects/{office}/{project}/acheivements/{acheivement}/edit', [ProjectController::class, 'acheivementEdit'])->name('projects.acheivement.edit');
 
 Route::post('acheivements/{project}', [AcheivementController::class, 'store'])->name('acheivements.store');
 Route::put('acheivements/{acheivement}', [AcheivementController::class, 'update'])->name('acheivements.update');
 Route::delete('acheivements/{acheivement}', [AcheivementController::class, 'destroy'])->name('acheivements.destroy');
+
+//photos
+Route::get('projects/{office}/{project}/photos', [ProjectController::class, 'photo'])->name('projects.photos');
+
+Route::post('photos/{project}', [PhotoController::class, 'store'])->name('photos.store');
+Route::delete('photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');

@@ -60,4 +60,8 @@ class Project extends Model
     public function acheivement(){
         return $this->hasMany(Acheivement::class,'project_id');
     }
+
+    public function photo(){
+        return $this->hasMany(Photo::class,'project_id');
+    }
 }
