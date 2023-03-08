@@ -26,7 +26,7 @@ class StoreAcheivementRequest extends FormRequest
         return [
             'fiscal_year_id' => 'required',
             'name' => 'required',
-            'status' => 'required',
+            'status' => 'required|boolean',
         ];
     }
 }
