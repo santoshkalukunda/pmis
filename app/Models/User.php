@@ -61,4 +61,8 @@ class User extends Authenticatable
     public function photo(){
         return $this->hasMany(Photo::class,'created_by');
     }
+
+    public function budget(){
+        return $this->hasMany(Budget::class,'created_by');
+    }
 }

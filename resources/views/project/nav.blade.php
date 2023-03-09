@@ -10,7 +10,7 @@
             href="{{route('projects.show',[$office, $project])}}">विवरण</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark  {{ request()->routeIs('projects.financial') ? 'active' : '' }}" href="{{route('projects.financial',[$office, $project])}}">बजेट</a>
+        <a class="nav-link text-dark  {{ request()->routeIs('projects.budgets') ? 'active' : '' }}" href="{{route('projects.budgets',[$office, $project])}}">बजेट</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-dark {{ request()->routeIs('projects.acheivement') ? 'active' : '' }}" href="{{route('projects.acheivement',[$office, $project])}}">उपलब्धिहरू</a>

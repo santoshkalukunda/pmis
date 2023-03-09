@@ -46,4 +46,8 @@ class FiscalYear extends Model
     {
         return $this->hasMany(Acheivement::class, 'fiscal_year_id');
     }
+
+    public function budget(){
+        return $this->hasMany(Budget::class,'fiscal_year_id');
+    }
 }

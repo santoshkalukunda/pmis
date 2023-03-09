@@ -23,8 +23,6 @@
                                     <th>स्थानिय तह</th>
                                     <th>वड नम्बर</th>
                                     <th>आयोजना सुरु भयको आ.ब.</th>
-                                    <th>बजेट स्रोत</th>
-                                    <th>बजेट उपशीर्षक न.(ब.उ.शी.न.)</th>
                                     <th>स्वीकृत लागत अनुमान</th>
                                     <th>खर्चको किसिम</th>
                                     <th>खर्च उपशीर्षक न.(ख.उ.शी.न.)</th>
@@ -49,8 +47,6 @@
                                             <td>{{ $project->municipality }}</td>
                                             <td>{{ $project->ward_no }}</td>
                                             <td>{{ $project->fiscalYear->fiscal_year }}</td>
-                                            <td>{{ $project->budgetSource->name }}</td>
-                                            <td>{{ $project->budget_subtitle }}</td>
                                             <td class="text-right">{{ $project->budget }}</td>
                                             <td>{{ $project->expenditureType->name }}</td>
                                             <td>{{ $project->expenditure_subtitle }}</td>

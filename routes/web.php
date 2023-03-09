@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AcheivementController;
 use App\Http\Controllers\ActiveFiscalYearController;
+use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\BudgetSourceController;
 use App\Http\Controllers\ExpenditureTypeController;
 use App\Http\Controllers\FinancialController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTypeController;
+use App\Models\Budget;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -105,3 +107,11 @@ Route::get('projects/{office}/{project}/photos', [ProjectController::class, 'pho
 
 Route::post('photos/{project}', [PhotoController::class, 'store'])->name('photos.store');
 Route::delete('photos/{photo}', [PhotoController::class, 'destroy'])->name('photos.destroy');
+
+//budget
+Route::get('projects/{office}/{project}/budgets', [ProjectController::class, 'budget'])->name('projects.budgets');
+Route::get('projects/{office}/{project}/budgets/{budget}/edit', [ProjectController::class, 'budgetEdit'])->name('projects.budgets.edit');
+
+Route::post('budgets/{project}', [BudgetController::class, 'store'])->name('budgets.store');
+Route::put('budgets/{budget}', [BudgetController::class, 'update'])->name('budgets.update');
+Route::delete('budgets/{budget}', [BudgetController::class, 'destroy'])->name('budgets.destroy');

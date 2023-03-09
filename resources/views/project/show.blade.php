@@ -12,14 +12,12 @@
                     <a href="{{ route('projects.edit', [$office, $project]) }}">
                         Edit
                     </a>
-                    
+
                 </div>
                 <div class="d-grid gap-3">
                     <div> <span class="text-bold">आयोजना सुरु भयको आ.ब. : </span>{{ $project->fiscalYear->fiscal_year }}
                     </div>
-                    <div><span class="text-bold">बजेट स्रोत :</span> {{ $project->budgetSource->name }}</div>
-                    <div><span class="text-bold">बजेट उपशीर्षक न.(ब.उ.शी.न.): </span> {{ $project->budget_subtitle }}</div>
-                    <div> <span class="text-bold">बजेट : </span>रु. {{ $project->budget }}/-</div>
+                    <div> <span class="text-bold">स्वीकृति लागत अनुमान : </span>रु. {{ $project->budget }}/-</div>
                     <div> <span class="text-bold">खर्चको किसिम : </span>{{ $project->expenditureType->name }} </div>
                     <div> <span class="text-bold">खर्च उपशीर्षक न.(ख.उ.शी.न.) : </span>{{ $project->expenditure_subtitle }}
                     </div>

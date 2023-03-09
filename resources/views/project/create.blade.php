@@ -77,45 +77,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="budget_source_id" class="form-label required">बजेट स्रोत </label>
-                                        <select name="budget_source_id"
-                                            class="form-control @error('budget_source_id') is-invalid @enderror"
-                                            id="budget_source_id" aria-describedby="budget_source_id">
-                                            <option value="">बजेट स्रोत छान्नुहोस्</option>
-                                            @foreach ($budgetSources as $budgetSource)
-                                                <option value="{{ $budgetSource->id }}"
-                                                    {{ $budgetSource->id == $project->budget_source_id ? 'selected' : '' }}>
-                                                    {{ $budgetSource->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            @error('budget_source_id')
-                                                {{ $message }}
-                                            @enderror
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="budget_subtitle" class="form-label required">बजेट उपशीर्षक
-                                        न.(ब.उ.शी.न.)</label>
-                                    <div class="input-group mb-3">
-                                        {{-- <span class="input-group-text" id="budget_subtitle">रु.</span> --}}
-                                        <input type="text" name="budget_subtitle"
-                                            class="form-control @error('budget_subtitle') is-invalid @enderror"
-                                            value="{{ old('budget_subtitle', $project->budget_subtitle) }}"
-                                            id="budget_subtitle" aria-describedby="budget_subtitle">
-                                        <div class="invalid-feedback">
-                                            @error('budget_subtitle')
-                                                {{ $message }}
-                                            @enderror
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="budget" class="form-label required">बजेट</label>
+                                    <label for="budget" class="form-label required">स्वीकृति लागत अनुमान</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="budget">रु.</span>
                                         <input type="number" min="1" name="budget"
