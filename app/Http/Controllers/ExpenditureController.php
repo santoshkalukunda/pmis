@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Expenditure;
 use App\Http\Requests\StoreExpenditureRequest;
 use App\Http\Requests\UpdateExpenditureRequest;
-use App\Models\Office;
 use App\Models\Project;
 
 class ExpenditureController extends Controller

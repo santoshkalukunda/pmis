@@ -27,11 +27,11 @@
                     <div> <span class="text-bold">आयोजना समाप्त मिति: </span><span id="project_completion_date_bs"></span>
                     </div>
                     <div class="my-2">
-                        <div class="text-center">हालसम्मको भौतिक प्रगति</div>
+                        <div class="text-center">हालसम्मको भौतिक प्रगति {{$project->physical_progress == null ? "0%" : $project->physical_progress ."%"}}</div>
                         <div class="progress" style="height: 30px;">
                             <div class="progress-bar" role="progressbar" style="width: {{ $project->physical_progress }}%;"
                                 aria-valuenow="{{ $project->physical_progress }}" aria-valuemin="0" aria-valuemax="100">
-                                {{ $project->physical_progress }}%</div>
+                                {{$project->physical_progress == null ? "" : $project->physical_progress ."%"}}</div>
                         </div>
                     </div>
                     <div>
