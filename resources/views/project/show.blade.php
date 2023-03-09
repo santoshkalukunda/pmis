@@ -18,12 +18,10 @@
                     <div> <span class="text-bold">आयोजना सुरु भयको आ.ब. : </span>{{ $project->fiscalYear->fiscal_year }}
                     </div>
                     <div> <span class="text-bold">स्वीकृति लागत अनुमान : </span>रु. {{ $project->budget }}/-</div>
-                    <div> <span class="text-bold">खर्चको किसिम : </span>{{ $project->expenditureType->name }} </div>
-                    <div> <span class="text-bold">खर्च उपशीर्षक न.(ख.उ.शी.न.) : </span>{{ $project->expenditure_subtitle }}
-                    </div>
                     <div> <span class="text-bold">सम्झौता मिति : </span><span id="agreement_date_bs"></span> </div>
                     <div> <span class="text-bold">सम्झौता रकम: </span><span> {{ $project->tender_amount }}</span> </div>
                     <div> <span class="text-bold">आयोजना सुरु मिति: </span><span id="project_start_date_bs"></span> </div>
+                    <div> <span class="text-bold">लाभाम्वित हुने जनसंख्या: </span><span>{{$project->population_to_be_benefited}}</span> </div>
                     <div> <span class="text-bold">आयोजनाको स्थिति:
                         </span><span>{{ $project->status == 1 ? 'सम्पन्न भइसकेको छ' : 'काम भइरहेको छ' }}</span> </div>
                     <div> <span class="text-bold">आयोजना समाप्त मिति: </span><span id="project_completion_date_bs"></span>

@@ -35,23 +35,14 @@ class Project extends Model
         return $this->belongsTo(ProjectType::class);
     }
 
-    // public function municipality(){
-    //     return $this->belongsTo(Municipality::class);
-    // }
     public function office(){
         return $this->belongsTo(Office::class);
-    }
-    public function budgetSource(){
-        return $this->belongsTo(BudgetSource::class);
     }
 
     public function fiscalYear(){
         return $this->belongsTo(FiscalYear::class);
     }
 
-    public function expenditureType(){
-        return $this->belongsTo(ExpenditureType::class);
-    }
 
     public function financial(){
         return $this->hasMany(Financial::class,'project_id');
@@ -67,5 +58,9 @@ class Project extends Model
 
     public function budget(){
         return $this->hasMany(Budget::class,'project_id');
+    }
+
+    public function expenditure(){
+        return $this->hasMany(Expenditure::class,'project_id');
     }
 }

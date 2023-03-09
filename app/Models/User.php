@@ -65,4 +65,8 @@ class User extends Authenticatable
     public function budget(){
         return $this->hasMany(Budget::class,'created_by');
     }
+
+    public function expenditure(){
+        return $this->hasMany(Expenditure::class,'created_by');
+    }
 }

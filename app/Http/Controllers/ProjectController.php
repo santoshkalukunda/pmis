@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Acheivement;
 use App\Models\Budget;
 use App\Models\BudgetSource;
+use App\Models\Expenditure;
 use App\Models\ExpenditureType;
 use App\Models\Financial;
 use App\Models\FiscalYear;
@@ -44,8 +45,7 @@ class ProjectController extends Controller
         }
         $projectTypes = ProjectType::get();
         $fiscalYears = FiscalYear::get();
-        $expenditureTypes = ExpenditureType::get();
-        return view('project.create', compact('project', 'projectTypes', 'fiscalYears', 'expenditureTypes', 'office'));
+        return view('project.create', compact('project', 'projectTypes', 'fiscalYears', 'office'));
     }
 
     /**
@@ -197,5 +197,27 @@ class ProjectController extends Controller
     public function budgetEdit(Office $office, Project $project, Budget $budget)
     {
         return $this->budget($office, $project, $budget);
+    }
+
+
+
+    public function expenditure(Office $office, Project $project, Expenditure $expenditure = null)
+    {
+        if (!$expenditure) {
+            $expenditure = new Expenditure();
+        }
+    
+        $expenditures = $project
+            ->expenditure()
+            ->latest()
+            ->get();
+            $fiscalYears = FiscalYear::get();
+            $expenditureTypes = ExpenditureType::get();
+        return view('project.expenditure', compact('project', 'office', 'expenditureTypes', 'expenditures','expenditure','fiscalYears'));
+    }
+
+    public function expenditureEdit(Office $office, Project $project, Expenditure $expenditure)
+    {
+        return $this->expenditure($office, $project, $expenditure);
     }
 }

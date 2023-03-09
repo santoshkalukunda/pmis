@@ -4,6 +4,7 @@ use App\Http\Controllers\AcheivementController;
 use App\Http\Controllers\ActiveFiscalYearController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\BudgetSourceController;
+use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\ExpenditureTypeController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\FiscalYearController;
@@ -115,3 +116,11 @@ Route::get('projects/{office}/{project}/budgets/{budget}/edit', [ProjectControll
 Route::post('budgets/{project}', [BudgetController::class, 'store'])->name('budgets.store');
 Route::put('budgets/{budget}', [BudgetController::class, 'update'])->name('budgets.update');
 Route::delete('budgets/{budget}', [BudgetController::class, 'destroy'])->name('budgets.destroy');
+
+//expenditure
+Route::get('projects/{office}/{project}/expenditures', [ProjectController::class, 'expenditure'])->name('projects.expenditures');
+Route::get('projects/{office}/{project}/expenditures/{expenditure}/edit', [ProjectController::class, 'expenditureEdit'])->name('projects.expenditures.edit');
+
+Route::post('expenditures/{project}', [ExpenditureController::class, 'store'])->name('expenditures.store');
+Route::put('expenditures/{expenditure}', [ExpenditureController::class, 'update'])->name('expenditures.update');
+Route::delete('expenditures/{expenditure}', [ExpenditureController::class, 'destroy'])->name('expenditures.destroy');

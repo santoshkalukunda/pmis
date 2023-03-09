@@ -12,7 +12,7 @@ class ExpenditureType extends Model
 
     protected $guarded = ['id'];
 
-    public function project(){
-        return $this->hasMany(Project::class,'expenditure_type_id');
+    public function expenditure(){
+        return $this->hasMany(Expenditure::class,'expenditure_type_id');
     }
 }

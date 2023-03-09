@@ -13,6 +13,9 @@
         <a class="nav-link text-dark  {{ request()->routeIs('projects.budgets') ? 'active' : '' }}" href="{{route('projects.budgets',[$office, $project])}}">बजेट</a>
     </li>
     <li class="nav-item">
+        <a class="nav-link text-dark  {{ request()->routeIs('projects.expenditures') ? 'active' : '' }}" href="{{route('projects.expenditures',[$office, $project])}}">खर्चहरु</a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link text-dark {{ request()->routeIs('projects.acheivement') ? 'active' : '' }}" href="{{route('projects.acheivement',[$office, $project])}}">उपलब्धिहरू</a>
     </li>
    

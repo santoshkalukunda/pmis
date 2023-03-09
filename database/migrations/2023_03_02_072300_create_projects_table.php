@@ -22,12 +22,8 @@ class CreateProjectsTable extends Migration
             $table->string('municipality')->nullable();
             $table->string('district')->nullable();
             $table->string('ward_no')->nullable();
-            $table->foreignId('budget_source_id')->constrained('budget_sources')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->foreignId('fiscal_year_id')->constrained('fiscal_years')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->integer('budget')->nullable();
-            $table->integer('budget_subtitle')->nullable();
-            $table->foreignId('expenditure_type_id')->constrained('expenditure_types')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
-            $table->string('expenditure_subtitle')->nullable();
             $table->string('population_to_be_benefited')->nullable();
             $table->string('tender_amount')->nullable();
             $table->string('agreement_date')->nullable();

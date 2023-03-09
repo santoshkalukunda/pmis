@@ -93,45 +93,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="mb-3">
-                                        <label for="expenditure_type_id" class="form-label required">खर्चको किसिम</label>
-                                        <select name="expenditure_type_id"
-                                            class="form-control @error('expenditure_type_id') is-invalid @enderror"
-                                            id="expenditure_type_id" aria-describedby="expenditure_type_id">
-                                            <option value="">खर्चको किसिम छान्नुहोस्</option>
-                                            @foreach ($expenditureTypes as $expenditureType)
-                                                <option value="{{ $expenditureType->id }}"
-                                                    {{ $expenditureType->id == $project->expenditure_type_id ? 'Selected' : '' }}>
-                                                    {{ $expenditureType->name }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            @error('expenditure_type_id')
-                                                {{ $message }}
-                                            @enderror
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <label for="expenditure_subtitle" class="form-label required">खर्च उपशीर्षक
-                                        न.(ख.उ.शी.न.)</label>
-                                    <div class="input-group mb-3">
-                                        {{-- <span class="input-group-text" id="expenditure_subtitle">रु.</span> --}}
-                                        <input type="text" name="expenditure_subtitle"
-                                            class="form-control @error('expenditure_subtitle') is-invalid @enderror"
-                                            value="{{ old('expenditure_subtitle', $project->expenditure_subtitle) }}"
-                                            id="expenditure_subtitle" aria-describedby="expenditure_subtitle">
-                                        <div class="invalid-feedback">
-                                            @error('expenditure_subtitle')
-                                                {{ $message }}
-                                            @enderror
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
                                     <label for="population_to_be_benefited" class="form-label required">लाभाम्वित हुने
                                         जनसंख्या</label>
                                     <div class="input-group mb-3">

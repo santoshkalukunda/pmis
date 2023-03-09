@@ -24,8 +24,6 @@
                                     <th>वड नम्बर</th>
                                     <th>आयोजना सुरु भयको आ.ब.</th>
                                     <th>स्वीकृत लागत अनुमान</th>
-                                    <th>खर्चको किसिम</th>
-                                    <th>खर्च उपशीर्षक न.(ख.उ.शी.न.)</th>
                                     <th>लाभाम्वित हुने जनसंख्या</th>
                                     <th>सम्झौता मिति</th>
                                     <th>सम्झौता रकम</th>
@@ -48,8 +46,6 @@
                                             <td>{{ $project->ward_no }}</td>
                                             <td>{{ $project->fiscalYear->fiscal_year }}</td>
                                             <td class="text-right">{{ $project->budget }}</td>
-                                            <td>{{ $project->expenditureType->name }}</td>
-                                            <td>{{ $project->expenditure_subtitle }}</td>
                                             <td class="text-right">{{ $project->population_to_be_benefited }}</td>
                                             <td>
                                                 <div id="agreement_date-{{ $project->id }}"></div>

@@ -50,4 +50,8 @@ class FiscalYear extends Model
     public function budget(){
         return $this->hasMany(Budget::class,'fiscal_year_id');
     }
+
+    public function expenditure(){
+        return $this->hasMany(Expenditure::class,'fiscal_year_id');
+    }
 }
