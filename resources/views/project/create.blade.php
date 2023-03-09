@@ -92,17 +92,18 @@
                                         </div>
                                     </div>
                                 </div>
+                  
+                           
                                 <div class="col-md-4">
-                                    <label for="population_to_be_benefited" class="form-label required">लाभाम्वित हुने
-                                        जनसंख्या</label>
+                                    <label for="tender_amount" class="form-label required">सम्झौता रकम</label>
                                     <div class="input-group mb-3">
-                                        {{-- <span class="input-group-text" id="population_to_be_benefited">रु.</span> --}}
-                                        <input type="number" min="1" name="population_to_be_benefited"
-                                            class="form-control @error('population_to_be_benefited') is-invalid @enderror"
-                                            value="{{ old('population_to_be_benefited', $project->population_to_be_benefited) }}"
-                                            id="population_to_be_benefited" aria-describedby="population_to_be_benefited">
+                                        <span class="input-group-text" id="tender_amount">रु.</span>
+                                        <input type="number" min="1" name="tender_amount"
+                                            class="form-control @error('tender_amount') is-invalid @enderror"
+                                            value="{{ old('tender_amount', $project->tender_amount) }}"
+                                            id="tender_amount" aria-describedby="tender_amount">
                                         <div class="invalid-feedback">
-                                            @error('population_to_be_benefited')
+                                            @error('tender_amount')
                                                 {{ $message }}
                                             @enderror
 
@@ -129,22 +130,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label for="tender_amount" class="form-label required">सम्झौता रकम</label>
-                                    <div class="input-group mb-3">
-                                        {{-- <span class="input-group-text" id="tender_amount">रु.</span> --}}
-                                        <input type="number" min="1" name="tender_amount"
-                                            class="form-control @error('tender_amount') is-invalid @enderror"
-                                            value="{{ old('tender_amount', $project->tender_amount) }}"
-                                            id="tender_amount" aria-describedby="tender_amount">
-                                        <div class="invalid-feedback">
-                                            @error('tender_amount')
-                                                {{ $message }}
-                                            @enderror
-
-                                        </div>
-                                    </div>
-                                </div>
+                       
                                 <div class="col-md-4">
                                     <label for="project_start_date" class="form-label required">आयोजना सुरु मिति</label>
                                     <div class="input-group mb-3">
@@ -161,6 +147,23 @@
                                             id="project_start_date" aria-describedby="project_start_date" hidden>
                                         <div class="invalid-feedback">
                                             @error('project_start_date_bs')
+                                                {{ $message }}
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="population_to_be_benefited" class="form-label required">लाभाम्वित हुने
+                                        जनसंख्या</label>
+                                    <div class="input-group mb-3">
+                                        {{-- <span class="input-group-text" id="population_to_be_benefited">रु.</span> --}}
+                                        <input type="number" min="1" name="population_to_be_benefited"
+                                            class="form-control @error('population_to_be_benefited') is-invalid @enderror"
+                                            value="{{ old('population_to_be_benefited', $project->population_to_be_benefited) }}"
+                                            id="population_to_be_benefited" aria-describedby="population_to_be_benefited">
+                                        <div class="invalid-feedback">
+                                            @error('population_to_be_benefited')
                                                 {{ $message }}
                                             @enderror
 
