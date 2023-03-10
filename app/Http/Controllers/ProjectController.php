@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProjectExport;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
@@ -15,7 +16,9 @@ use App\Models\FiscalYear;
 use App\Models\Office;
 use App\Models\ProjectSource;
 use App\Models\ProjectType;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectController extends Controller
 {
@@ -184,14 +187,14 @@ class ProjectController extends Controller
         if (!$budget) {
             $budget = new Budget();
         }
-    
+
         $budgets = $project
             ->budget()
             ->latest()
             ->get();
-            $fiscalYears = FiscalYear::get();
-            $budgetSources = BudgetSource::get();
-        return view('project.budget', compact('project', 'office', 'budgets', 'budget','budgetSources','fiscalYears'));
+        $fiscalYears = FiscalYear::get();
+        $budgetSources = BudgetSource::get();
+        return view('project.budget', compact('project', 'office', 'budgets', 'budget', 'budgetSources', 'fiscalYears'));
     }
 
     public function budgetEdit(Office $office, Project $project, Budget $budget)
@@ -199,25 +202,68 @@ class ProjectController extends Controller
         return $this->budget($office, $project, $budget);
     }
 
-
-
     public function expenditure(Office $office, Project $project, Expenditure $expenditure = null)
     {
         if (!$expenditure) {
             $expenditure = new Expenditure();
         }
-    
+
         $expenditures = $project
             ->expenditure()
             ->latest()
             ->get();
-            $fiscalYears = FiscalYear::get();
-            $expenditureTypes = ExpenditureType::get();
-        return view('project.expenditure', compact('project', 'office', 'expenditureTypes', 'expenditures','expenditure','fiscalYears'));
+        $fiscalYears = FiscalYear::get();
+        $expenditureTypes = ExpenditureType::get();
+        return view('project.expenditure', compact('project', 'office', 'expenditureTypes', 'expenditures', 'expenditure', 'fiscalYears'));
     }
 
     public function expenditureEdit(Office $office, Project $project, Expenditure $expenditure)
     {
         return $this->expenditure($office, $project, $expenditure);
+    }
+
+    public function search(Office $office, Request $request)
+    {
+        $projects = new Project();
+
+        if ($request->has('district')) {
+            if ($request->district != null) {
+                $projects = $projects->where('district', $request->district);
+            }
+        }
+        if ($request->has('municipality')) {
+            if ($request->municipality != null) {
+                $projects = $projects->where('municipality', $request->municipality);
+            }
+        }
+        if ($request->has('fiscal_year_id')) {
+            if ($request->fiscal_year_id != null) {
+                $projects = $projects->where('fiscal_year_id', $request->fiscal_year_id);
+            }
+        }
+        if ($request->has('project_type_id')) {
+            if ($request->project_type_id != null) {
+                $projects = $projects->where('project_type_id', $request->project_type_id);
+            }
+        }
+        if ($request->has('status')) {
+            if ($request->status != null) {
+                $projects = $projects->where('status', $request->status);
+            }
+        }
+        if ($request->has('name')) {
+            if ($request->name != null) {
+                $projects = $projects->where('name', 'LIKE', "$request->name%");
+            }
+        }
+        $projects = $projects
+            ->where('office_id', $office->id)
+            ->latest()
+            ->get();
+        return view('project.index', compact('projects', 'office'));
+    }
+    public function excel(Office $office, Request $request)
+    {
+        return Excel::download(new ProjectExport($office, $request), 'Project-report.xlsx');
     }
 }

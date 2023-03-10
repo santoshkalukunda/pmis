@@ -80,6 +80,10 @@ Route::get('projects/offices', [ProjectController::class, 'office'])->name('proj
 Route::get('projects/{office}/secondlevel', [ProjectController::class, 'secondlevel'])->name('projects.secondlevel');
 Route::get('projects/{office}', [ProjectController::class, 'index'])->name('projects.index');
 
+//search project
+Route::get('projects/{office}/search', [ProjectController::class, 'search'])->name('projects.search');
+Route::get('projects/{office}/excel', [ProjectController::class, 'excel'])->name('projects.excel');
+
 Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
 Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
 Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');

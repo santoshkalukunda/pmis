@@ -4,8 +4,18 @@
     <div class="container">
         <h4 class="text-center py-3">{{ $title = $office->name . 'को आयोजनाहरु आयोजनाहरु' }}</h4>
         <div class="d-flex align-items-center mb-3">
-            <div class="ml-auto">
-                <a href="{{ route('projects.create', $office) }}" class="btn btn-success z-depth-0">नयाँ दर्ता</a>
+            <x-project-filter :office="$office" />
+            <div class="ml-auto d-flex gap-2">
+                <a href="{{ route('projects.create', $office) }}" class="btn btn-success z-depth-0"><i
+                        class="bi bi-plus-lg"></i> नयाँ दर्ता</a>
+                <div>
+                    <form action="{{ route('projects.excel', $office) }}" method="get">
+                        @include('project.filter-input')
+                        <button class="btn btn-secondary " type="submit">
+                            <i class="bi bi-file-spreadsheet"></i> Export to Excel
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
         <div class="row justify-content-center">

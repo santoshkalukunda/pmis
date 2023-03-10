@@ -21,7 +21,9 @@
                                 @method('put')
                             @endif
                             <div class="row">
-                                <livewire:project-municipality :project="$project" />
+                                <div class="col-md-8">
+                                    <livewire:project-municipality :project="$project" />
+                                </div>
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="ward_no" class="form-label required">वडा नम्बर</label>
@@ -92,16 +94,16 @@
                                         </div>
                                     </div>
                                 </div>
-                  
-                           
+
+
                                 <div class="col-md-4">
                                     <label for="tender_amount" class="form-label required">सम्झौता रकम</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="tender_amount">रु.</span>
                                         <input type="number" min="1" name="tender_amount"
                                             class="form-control @error('tender_amount') is-invalid @enderror"
-                                            value="{{ old('tender_amount', $project->tender_amount) }}"
-                                            id="tender_amount" aria-describedby="tender_amount">
+                                            value="{{ old('tender_amount', $project->tender_amount) }}" id="tender_amount"
+                                            aria-describedby="tender_amount">
                                         <div class="invalid-feedback">
                                             @error('tender_amount')
                                                 {{ $message }}
@@ -130,7 +132,7 @@
                                         </div>
                                     </div>
                                 </div>
-                       
+
                                 <div class="col-md-4">
                                     <label for="project_start_date" class="form-label required">आयोजना सुरु मिति</label>
                                     <div class="input-group mb-3">
@@ -306,11 +308,11 @@
             //project compeletion date bs to ad
             var project_completion_date_bs = document.getElementById('project_completion_date_bs').value;
             document.getElementById('project_completion_date').value = NepaliFunctions.BS2AD(project_completion_date_bs);
-          
+
             var status = document.getElementById("status").value;
             if (status == 0) {
                 document.getElementById('project_completion_date_bs').value = "";
-                document.getElementById('project_completion_date').value ="";
+                document.getElementById('project_completion_date').value = "";
             }
         }
 

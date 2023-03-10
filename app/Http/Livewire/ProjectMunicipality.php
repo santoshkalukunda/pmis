@@ -11,7 +11,7 @@ class ProjectMunicipality extends Component
     public $districtName;
     public $municipality;
 
-    public function mount($project)
+    public function mount(Project $project)
     {
         $this->districtName = $project->district;
         $this->municipality = $project->municipality;
