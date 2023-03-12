@@ -40,7 +40,24 @@
                         </p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="{{ route('budget-sources.index') }}" class="nav-link text-white">
+                        <i class="bi bi-bank nav-icon"></i>
+                        <p>बजेट स्रोत</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('project-types.index') }}" class="nav-link text-white">
+                        <i class="bi bi-diagram-3 nav-icon"></i>
+                        <p>आयोजनाको किसिम</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('expenditure-types.index') }}" class="nav-link text-white">
+                        <i class="bi bi-diagram-2 nav-icon"></i>
+                        <p>खर्चको किसिम</p>
+                    </a>
+                </li>
                 <li class="nav-item">
                     <a href="#" class="nav-link text-white">
                         <i class="nav-icon fas fa-copy"></i>
@@ -73,12 +90,7 @@
                         <p>कार्यालयहरू</p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('budget-sources.index') }}" class="nav-link text-white">
-                        <i class="bi bi-bank nav-icon"></i>
-                        <p>बजेट स्रोत</p>
-                    </a>
-                </li>
+              
                 <li class="nav-item">
                     <a href="{{ route('fiscal-years.index') }}" class="nav-link text-white">
                         <i class="bi bi-calendar3 nav-icon"></i>
@@ -86,18 +98,7 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a href="{{ route('project-types.index') }}" class="nav-link text-white">
-                        <i class="bi bi-diagram-3 nav-icon"></i>
-                        <p>आयोजनाको किसिम</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('expenditure-types.index') }}" class="nav-link text-white">
-                        <i class="bi bi-diagram-2 nav-icon"></i>
-                        <p>खर्चको किसिम</p>
-                    </a>
-                </li>
+         
                 <hr>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="{{ route('logout') }}"
