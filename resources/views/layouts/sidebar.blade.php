@@ -58,7 +58,7 @@
                         <p>खर्चको किसिम</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="#" class="nav-link text-white">
                         <i class="nav-icon fas fa-copy"></i>
                         <p>
@@ -81,7 +81,7 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <li class="nav-header">Settings</li>
               
                 <li class="nav-item">

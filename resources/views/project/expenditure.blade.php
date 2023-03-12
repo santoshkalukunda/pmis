@@ -38,6 +38,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <label for="expenditure_subtitle" class="form-label required">खर्च शीर्षक
+                                न.</label>
+                            <div class="input-group mb-3">
+                                <input type="text" name="expenditure_subtitle"
+                                    class="form-control @error('expenditure_subtitle') is-invalid @enderror"
+                                    value="{{ old('expenditure_subtitle', $expenditure->expenditure_subtitle ? $expenditure->expenditure_subtitle : $project->expenditure_subtitle) }}"
+                                    id="expenditure_subtitle" aria-describedby="expenditure_subtitle">
+                                <div class="invalid-feedback">
+                                    @error('expenditure_subtitle')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="expenditure_type_id" class="form-label required">खर्चको किसिम</label>
@@ -60,22 +76,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <label for="expenditure_subtitle" class="form-label required">खर्च उपशीर्षक
-                                न.</label>
-                            <div class="input-group mb-3">
-                                <input type="text" name="expenditure_subtitle"
-                                    class="form-control @error('expenditure_subtitle') is-invalid @enderror"
-                                    value="{{ old('expenditure_subtitle', $expenditure->expenditure_subtitle) }}"
-                                    id="expenditure_subtitle" aria-describedby="expenditure_subtitle">
-                                <div class="invalid-feedback">
-                                    @error('expenditure_subtitle')
-                                        {{ $message }}
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
+             
                         <div class="col-md-3">
                             <label for="expenditure" class="form-label required">रकम</label>
                             <div class="input-group mb-3">

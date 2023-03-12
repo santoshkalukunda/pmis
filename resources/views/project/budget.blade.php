@@ -38,6 +38,22 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <label for="budget_subtitle" class="form-label required">बजेट उपशीर्षक
+                                न.</label>
+                            <div class="input-group mb-3">
+                               <input type="text" name="budget_subtitle"
+                                    class="form-control @error('budget_subtitle') is-invalid @enderror"
+                                    value="{{ old('budget_subtitle', $budget->budget_subtitle ? $budget->budget_subtitle : $project->budget_subtitle) }}"
+                                    id="budget_subtitle" aria-describedby="budget_subtitle">
+                                <div class="invalid-feedback">
+                                    @error('budget_subtitle')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="mb-3">
                                 <label for="budget_source_id" class="form-label required">बजेट स्रोत </label>
@@ -59,22 +75,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-2">
-                            <label for="budget_subtitle" class="form-label required">बजेट उपशीर्षक
-                                न.</label>
-                            <div class="input-group mb-3">
-                               <input type="text" name="budget_subtitle"
-                                    class="form-control @error('budget_subtitle') is-invalid @enderror"
-                                    value="{{ old('budget_subtitle', $budget->budget_subtitle) }}"
-                                    id="budget_subtitle" aria-describedby="budget_subtitle">
-                                <div class="invalid-feedback">
-                                    @error('budget_subtitle')
-                                        {{ $message }}
-                                    @enderror
-
-                                </div>
-                            </div>
-                        </div>
+               
                         <div class="col-md-2">
                             <label for="budget" class="form-label required">बजेट</label>
                             <div class="input-group mb-3">

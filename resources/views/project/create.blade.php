@@ -79,7 +79,23 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="budget" class="form-label required">स्वीकृति लागत अनुमान</label>
+                                    <label for="budget_subtitle" class="form-label required">बजेट उपशीर्षक
+                                        न.</label>
+                                    <div class="input-group mb-3">
+                                       <input type="text" name="budget_subtitle"
+                                            class="form-control @error('budget_subtitle') is-invalid @enderror"
+                                            value="{{ old('budget_subtitle', $project->budget_subtitle) }}"
+                                            id="budget_subtitle" aria-describedby="budget_subtitle">
+                                        <div class="invalid-feedback">
+                                            @error('budget_subtitle')
+                                                {{ $message }}
+                                            @enderror
+        
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="budget" class="form-label required">स्वीकृति बजेट</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="budget">रु.</span>
                                         <input type="number" min="1" name="budget"
@@ -94,9 +110,25 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div class="col-md-4">
+                                    <label for="expenditure_subtitle" class="form-label required">खर्च शीर्षक
+                                        न.</label>
+                                    <div class="input-group mb-3">
+                                        <input type="text" name="expenditure_subtitle"
+                                            class="form-control @error('expenditure_subtitle') is-invalid @enderror"
+                                            value="{{ old('expenditure_subtitle', $project->expenditure_subtitle) }}"
+                                            id="expenditure_subtitle" aria-describedby="expenditure_subtitle">
+                                        <div class="invalid-feedback">
+                                            @error('expenditure_subtitle')
+                                                {{ $message }}
+                                            @enderror
+        
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                {{-- <div class="col-md-4">
                                     <label for="tender_amount" class="form-label required">सम्झौता रकम</label>
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="tender_amount">रु.</span>
@@ -136,7 +168,6 @@
                                 <div class="col-md-4">
                                     <label for="project_start_date" class="form-label required">आयोजना सुरु मिति</label>
                                     <div class="input-group mb-3">
-                                        {{-- <span class="input-group-text" id="project_start_date">रु.</span> --}}
                                         <input type="text"
                                             class="form-control @error('project_start_date_bs') is-invalid @enderror"
                                             value="{{ old('project_start_date_bs', $project->project_start_date_bs) }}"
@@ -154,7 +185,7 @@
 
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-4">
                                     <label for="population_to_be_benefited" class="form-label required">लाभाम्वित हुने
                                         जनसंख्या</label>
@@ -172,7 +203,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                {{-- <div class="col-md-4">
                                     <label for="physical_progress" class="form-label">हालसम्मको भौतिक प्रगति (%)</label>
                                     <div class="input-group mb-3">
                                         <input type="number" min="1" name="physical_progress"
@@ -187,8 +218,8 @@
 
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-8">
+                                </div> --}}
+                                {{-- <div class="col-md-8">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="mb-3">
@@ -236,7 +267,7 @@
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="col-md-12">
                                     <label for="description" class="form-label">कैफियत</label>
                                     <div class="input-group mb-3">

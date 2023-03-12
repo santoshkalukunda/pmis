@@ -51,6 +51,16 @@ class ProjectController extends Controller
         return view('project.create', compact('project', 'projectTypes', 'fiscalYears', 'office'));
     }
 
+    public function physicalProgress(Office $office, Project $project = null)
+    {
+        if (!$project) {
+            $project = new Project();
+        }
+        $projectTypes = ProjectType::get();
+        $fiscalYears = FiscalYear::get();
+        return view('project.agreement', compact('project', 'projectTypes', 'fiscalYears', 'office'));
+    }
+
     /**
      * Store a newly created resource in storage.
      *
