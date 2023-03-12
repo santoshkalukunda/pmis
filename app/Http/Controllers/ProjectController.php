@@ -210,6 +210,7 @@ class ProjectController extends Controller
 
         $expenditures = $project
             ->expenditure()
+            ->orderBy('fiscal_year_id')
             ->latest()
             ->get();
         $fiscalYears = FiscalYear::get();
