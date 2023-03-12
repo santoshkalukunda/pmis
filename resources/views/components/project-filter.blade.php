@@ -59,6 +59,24 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="agreement" class="form-label required">सम्झौताको अवस्था</label>
+                                    <select name="agreement" class="form-control @error('agreement') is-invalid @enderror"
+                                        id="agreement" aria-describedby="agreement">
+                                        <option value="">सम्झौताको अवस्था छान्नुहोस्</option>
+                                        <option value="0">सम्झौताको भयको छैन</option>
+                                        <option value="1">
+                                            सम्झौताको भयको छ</option>
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        @error('agreement')
+                                            {{ $message }}
+                                        @enderror
+
+                                    </div>
+                                </div>
+                            </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">

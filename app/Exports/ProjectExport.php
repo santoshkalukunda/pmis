@@ -58,6 +58,14 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
                 $projects = $projects->where('status', $this->request->status);
             }
         }
+
+        if ($this->request->has('agreement')) {
+            if ($this->request->agreement == true) {
+                $projects = $projects->whereNotNull('agreement_date');
+            }else{
+                $projects = $projects->where('agreement_date', null);
+            }
+        }
         if ($this->request->has('name')) {
             if ($this->request->name != null) {
                 $projects = $projects->where('name', 'LIKE', "$this->request->name%");

@@ -10,7 +10,7 @@
             href="{{route('projects.show',[$office, $project])}}">विवरण</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark  {{ request()->routeIs('projects.budgets') ? 'active' : '' }}" href="{{route('projects.budgets',[$office, $project])}}">बजेट</a>
+        <a class="nav-link text-dark  {{ request()->routeIs('projects.budgets') ? 'active' : '' }}" href="{{route('projects.budgets',[$office, $project])}}">विनियोजित बजेट</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-dark  {{ request()->routeIs('projects.expenditures') ? 'active' : '' }}" href="{{route('projects.expenditures',[$office, $project])}}">खर्चहरु</a>
@@ -21,5 +21,8 @@
    
     <li class="nav-item">
         <a class="nav-link text-dark {{ request()->routeIs('projects.photos') ? 'active' : '' }}" href="{{route('projects.photos',[$office, $project])}}">तस्बीरहरू</a>
+    </li>
+    <li class="nav-item ml-auto">
+        <a class="nav-link text-dark  {{ request()->routeIs('projects.photos') ? 'active' : '' }}" href="{{route('projects.index',[$office, $project])}}">Back</a>
     </li>
 </ul>

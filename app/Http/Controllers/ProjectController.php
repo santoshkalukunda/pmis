@@ -247,6 +247,13 @@ class ProjectController extends Controller
                 $projects = $projects->where('project_type_id', $request->project_type_id);
             }
         }
+        if ($request->has('agreement')) {
+            if ($request->agreement == true) {
+                $projects = $projects->whereNotNull('agreement_date');
+            }else{
+                $projects = $projects->where('agreement_date', null);
+            }
+        }
         if ($request->has('status')) {
             if ($request->status != null) {
                 $projects = $projects->where('status', $request->status);

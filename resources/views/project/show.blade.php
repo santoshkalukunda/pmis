@@ -17,7 +17,7 @@
                 <div class="d-grid gap-3">
                     <div> <span class="text-bold">आयोजना सुरु भयको आ.ब. : </span>{{ $project->fiscalYear->fiscal_year }}
                     </div>
-                    <div> <span class="text-bold">स्वीकृति लागत अनुमान : </span>रु. {{ $project->budget }}/-</div>
+                    <div> <span class="text-bold">स्वीकृति बजेट : </span>रु. {{ $project->budget }}/-</div>
                     <div> <span class="text-bold">सम्झौता मिति : </span><span id="agreement_date_bs"></span> </div>
                     <div> <span class="text-bold">सम्झौता रकम: </span><span> {{ $project->tender_amount }}</span> </div>
                     <div> <span class="text-bold">आयोजना सुरु मिति: </span><span id="project_start_date_bs"></span> </div>

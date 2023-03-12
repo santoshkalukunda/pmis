@@ -13,6 +13,10 @@
     <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
         value="{{ $_GET['name']}}" id="name" aria-describedby="name" hidden>
 @endisset
+@isset($_GET['agreement'])
+    <input type="text" name="agreement" class="form-control @error('agreement') is-invalid @enderror"
+        value="{{ $_GET['agreement']}}" id="agreement" aria-describedby="agreement" hidden>
+@endisset
 
 @isset($_GET['project_type_id'])
     <input type="text" name="project_type_id" value="{{$_GET['project_type_id']}}" class="form-control @error('project_type_id') is-invalid @enderror"
