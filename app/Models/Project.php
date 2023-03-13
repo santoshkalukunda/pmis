@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Session;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Wildside\Userstamps\Userstamps;
@@ -22,6 +23,19 @@ class Project extends Model
             ->doNotGenerateSlugsOnUpdate();
     }
 
+    protected $attributes = [
+        'fiscal_year_id' => 'default_value',
+    ];
+
+    public function save(array $options = [])
+    {
+        if (empty($this->fiscal_year_id)) {
+            $this->fiscal_year_id = Session::get('active_fiscal_year');
+        }
+
+        return parent::save($options);
+    }
+    
     public function getRouteKeyName()
     {
         return 'slug';
