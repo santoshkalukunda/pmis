@@ -116,4 +116,11 @@ class UserController extends Controller
             ->route('users.index')
             ->with('success', 'Password Changed');
     }
+    public function profile()
+    {
+        $user = Auth::user();
+        $offices = Office::get();
+        $roles = Role::get();
+        return view('user.edit', compact('user', 'offices', 'roles'));
+    }
 }
