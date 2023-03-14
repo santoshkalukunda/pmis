@@ -14,7 +14,7 @@
                 <img src="https://img.icons8.com/bubbles/50/null/guest-male.png" />
             </div>
             <div class="info">
-                <a href="#" class="d-block text-white">{{ Auth::user()->name }}</a>
+                <a href="{{route('users.edit',Auth::user())}}" class="d-block text-white">{{ Auth::user()->name }}</a>
             </div>
         </div>
         <!-- Sidebar Menu -->
@@ -97,7 +97,12 @@
                         <p>आर्थिक वर्ष</p>
                     </a>
                 </li>
-
+                <li class="nav-item">
+                    <a href="{{ route('users.index') }}" class="nav-link text-white">
+                        <i class="bi bi-people nav-icon"></i>
+                        <p>प्रयोगकर्ताहरु</p>
+                    </a>
+                </li>
          
                 <hr>
                 <li class="nav-item">
