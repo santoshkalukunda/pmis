@@ -76,17 +76,24 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $validatedData = $request->validate([
-            'email' => ['required', 'email', 'unique:users,email,' . $user->id],
-            'name' => ['required', 'string', 'max:255'],
-            'office_id' => ['required', 'string', 'max:255'],
-            'role' => ['required'],
-        ]);
-        $user->syncRoles($validatedData['role']);
+        if ($user->hasRole('Super-Admin')) {
+            $validatedData = $request->validate([
+                'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+                'name' => ['required', 'string', 'max:255'],
+                'office_id' => ['required', 'string', 'max:255'],
+                'role' => ['required'],
+            ]);
+            $user->syncRoles($validatedData['role']);
+        } else {
+            $validatedData = $request->validate([
+                'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+                'name' => ['required', 'string', 'max:255'],
+            ]);
+            $user = User::findOrFail(Auth::user()->id);
+        }
         $user = $user->update($validatedData);
-
         return redirect()
-            ->route('users.index')
+            ->back()
             ->with('success', 'User Updated');
     }
 
@@ -106,15 +113,32 @@ class UserController extends Controller
 
     public function changePassword(Request $request, User $user)
     {
-        $validatedData = $request->validate([
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
-        $user->update([
-            'password' => Hash::make($validatedData['password']),
-        ]);
-        return redirect()
-            ->route('users.index')
-            ->with('success', 'Password Changed');
+        if ($user->hasRole('Super-Admin')) {
+            $validatedData = $request->validate([
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            return redirect()
+                ->back()
+                ->with('success', 'Password Changed');
+        } else {
+            $validatedData = $request->validate([
+                'oldPassword' => ['required','string', 'min:8',],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            $user = User::findOrFail(Auth::user()->id);
+            if (Hash::check($validatedData['oldPassword'], $user->password)) {
+                $user->update([
+                    'password' => Hash::make($validatedData['password']),
+                ]);
+                return redirect()
+                    ->back()
+                    ->with('success', 'Password Changed');
+            } else {
+                return redirect()
+                    ->back()
+                    ->with('error', 'Old Pasword Not matched');
+            }
+        }
     }
     public function profile()
     {

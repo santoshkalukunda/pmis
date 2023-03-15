@@ -220,6 +220,8 @@ Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
 
     //user profile
     Route::get('profile', [UserController::class, 'profile'])->name('users.profile');
+    Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::post('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.changePassword');
 });
 
 Route::group(['middleware' => ['role:Super-Admin|admin|user']], function () {
@@ -279,4 +281,6 @@ Route::group(['middleware' => ['role:Super-Admin|admin|user']], function () {
 
     //user profile
     Route::get('profile', [UserController::class, 'profile'])->name('users.profile');
+    Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
+    Route::post('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.changePassword');
 });

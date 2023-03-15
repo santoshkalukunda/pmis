@@ -10,7 +10,7 @@
 @endif
 
 @if (Session::has('error'))
-    <div class="position-fixed bottom-0 right-0 p-3 bg-white" style="z-index: 5; right: 0; top: 50px;">
+    <div class="position-fixed bottom-0 right-0 p-3 mt-5 bg-white" style="z-index: 5; right: 0; bottom: 0 px;">
         <div id="liveToast" class="toast hide" role="alert" aria-live="assertive" aria-atomic="true" data-delay="500">
             <div class="toast-body text-danger">
                 <span class=""> <i class="bi bi-x-circle fa-2x"></i></span>

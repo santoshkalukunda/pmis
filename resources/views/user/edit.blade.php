@@ -6,48 +6,49 @@
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">{{ __($title = 'User Update') }}</div>
-
                     <div class="card-body">
                         <form method="POST" action="{{ route('users.update', $user) }}">
                             @csrf
                             @method('put')
-                            <div>
-                                <label for="office_id" class="col-form-label text-md-end">{{ __('Office Name') }}</label>
+                            @role('Super-Admin')
+                                <div>
+                                    <label for="office_id" class="col-form-label text-md-end">{{ __('Office Name') }}</label>
 
-                                <select id="office_id" class="form-control @error('office_id') is-invalid @enderror"
-                                    name="office_id" required autocomplete="office_id">
-                                    <option value="">Selec Office</option>
-                                    @foreach ($offices as $office)
-                                        <option value="{{ $office->id }}"
-                                            {{ $office->id == $user->office_id ? 'selected' : '' }}>{{ $office->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('office_id')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div>
-                                <label for="role" class="col-form-label text-md-right">{{ __('Role') }}</label>
-                                <select id="role" type="text"
-                                    class="form-control @error('role_id') is-invalid @enderror" name="role"
-                                    value="{{ old('role') }}" required>
-                                    <option value="">Select role</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->name }}"
-                                            {{ $role->name == implode($user->getRoleNames()->toArray()) ? 'selected' : '' }}>
-                                            {{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                                @error('role')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                    <select id="office_id" class="form-control @error('office_id') is-invalid @enderror"
+                                        name="office_id" required autocomplete="office_id">
+                                        <option value="">Selec Office</option>
+                                        @foreach ($offices as $office)
+                                            <option value="{{ $office->id }}"
+                                                {{ $office->id == $user->office_id ? 'selected' : '' }}>{{ $office->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    @error('office_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                <div>
+                                    <label for="role" class="col-form-label text-md-right">{{ __('Role') }}</label>
+                                    <select id="role" type="text"
+                                        class="form-control @error('role_id') is-invalid @enderror" name="role"
+                                        value="{{ old('role') }}" required>
+                                        <option value="">Select role</option>
+                                        @foreach ($roles as $role)
+                                            <option value="{{ $role->name }}"
+                                                {{ $role->name == implode($user->getRoleNames()->toArray()) ? 'selected' : '' }}>
+                                                {{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('role')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
 
-                            </div>
+                                </div>
+                            @endrole
                             <div>
                                 <label for="name" class="col-form-label text-md-end">{{ __('Name') }}</label>
                                 <input id="name" type="text"
@@ -95,7 +96,22 @@
                     <div class="card-body">
                         <form method="POST" action="{{ route('users.changePassword', $user) }}">
                             @csrf
+                            @role('admin|user')
+                                <div>
+                                    <label for="oldPassword" class="col-form-label text-md-end">{{ __('Old Password') }}</label>
 
+                                    <input id="oldPassword" type="password"
+                                        class="form-control @error('oldPassword') is-invalid @enderror" name="oldPassword"
+                                         autocomplete="oldPassword">
+
+                                    @error('oldPassword')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+
+                                </div>
+                            @endrole
                             <div>
                                 <label for="password" class="col-form-label text-md-end">{{ __('New Password') }}</label>
 
