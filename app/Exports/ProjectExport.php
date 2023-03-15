@@ -73,6 +73,7 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
         }
         return $projects = $projects
             ->where('office_id', $this->office->id)
+            ->orderBy('fiscal_year_id')
             ->latest()
             ->get();
     }
@@ -81,7 +82,7 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
         return [
             $projects->name,
             $projects->office->name,
-            $projects->projectType->name,
+            $projects->projectType->name ?? "",
             $projects->district,
             $projects->municipality,
             $projects->ward_no,

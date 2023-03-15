@@ -40,14 +40,16 @@ class ProjectController extends Controller
         if ($user->hasRole('Super-Admin')) {
             $projects = $office
                 ->project()
+                ->orderBy('fiscal_year_id')
                 ->latest()
-                ->get();
+                ->paginate(50);
         } else {
             if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
                 $projects = $office
                     ->project()
+                    ->orderBy('fiscal_year_id')
                     ->latest()
-                    ->get();
+                    ->paginate(50);
             } else {
                 return abort(401);
             }
@@ -429,8 +431,9 @@ class ProjectController extends Controller
         }
         $projects = $projects
             ->where('office_id', $office->id)
+            ->orderBy('fiscal_year_id')
             ->latest()
-            ->get();
+            ->paginate();
         return view('project.index', compact('projects', 'office'));
     }
     public function excel(Office $office, Request $request)
