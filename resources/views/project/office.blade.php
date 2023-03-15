@@ -32,11 +32,11 @@
                                 </a>
                                 <ul class=" list-group">
                                     @foreach ($firstLevelOffice->childOffices as $SecondLevelOffice)
-                                        <a href="{{ route('projects.secondlevel', $SecondLevelOffice) }}">
-                                            <li class="list-group-item list-group-item-action">
-                                                <h5 class=" text-center">{{ $SecondLevelOffice->name }} </h5>
-                                            </li>
-                                        </a>
+                                                <a href="{{ route('projects.secondlevel', $SecondLevelOffice) }}">
+                                                    <li class="list-group-item list-group-item-action">
+                                                        <h5 class=" text-center">{{ $SecondLevelOffice->name }} </h5>
+                                                    </li>
+                                                </a>
                                     @endforeach
                                 </ul>
                             @endforeach

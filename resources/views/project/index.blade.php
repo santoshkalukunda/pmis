@@ -50,7 +50,7 @@
                                                     href="{{ route('projects.show', [$office, $project]) }}">{{ $project->name }}
                                                 </a>
                                             </td>
-                                            <td>{{ $project->projectType->name ?? "" }}</td>
+                                            <td>{{ $project->projectType->name ?? '' }}</td>
                                             <td>{{ $project->district }}</td>
                                             <td>{{ $project->municipality }}</td>
                                             <td>{{ $project->ward_no }}</td>

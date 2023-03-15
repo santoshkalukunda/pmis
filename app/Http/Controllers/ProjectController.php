@@ -16,12 +16,19 @@ use App\Models\FiscalYear;
 use App\Models\Office;
 use App\Models\ProjectSource;
 use App\Models\ProjectType;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProjectController extends Controller
 {
+    public function __construct()
+    {
+        // $this->authorizeResource([Project::class, 'project', Office::class, 'office']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,10 +36,22 @@ class ProjectController extends Controller
      */
     public function index(Office $office)
     {
-        $projects = $office
-            ->project()
-            ->latest()
-            ->get();
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $projects = $office
+                ->project()
+                ->latest()
+                ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $projects = $office
+                    ->project()
+                    ->latest()
+                    ->get();
+            } else {
+                return abort(401);
+            }
+        }
         return view('project.index', compact('projects', 'office'));
     }
 
@@ -48,7 +67,17 @@ class ProjectController extends Controller
         }
         $projectTypes = ProjectType::get();
         $fiscalYears = FiscalYear::get();
-        return view('project.create', compact('project', 'projectTypes', 'fiscalYears', 'office'));
+        $user = Auth::user();
+
+        if ($user->hasRole('Super-Admin')) {
+            return view('project.create', compact('project', 'projectTypes', 'fiscalYears', 'office'));
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                return view('project.create', compact('project', 'projectTypes', 'fiscalYears', 'office'));
+            } else {
+                return abort(401);
+            }
+        }
     }
 
     public function physicalProgress(Office $office, Project $project = null)
@@ -58,7 +87,16 @@ class ProjectController extends Controller
         }
         $projectTypes = ProjectType::get();
         $fiscalYears = FiscalYear::get();
-        return view('project.agreement', compact('project', 'projectTypes', 'fiscalYears', 'office'));
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            return view('project.agreement', compact('project', 'projectTypes', 'fiscalYears', 'office'));
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                return view('project.agreement', compact('project', 'projectTypes', 'fiscalYears', 'office'));
+            } else {
+                return abort(401);
+            }
+        }
     }
 
     /**
@@ -69,7 +107,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request, Office $office)
     {
-        $project = $office->project()->create($request->validated());
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $project = $office->project()->create($request->validated());
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $project = $office->project()->create($request->validated());
+            } else {
+                return abort(401);
+            }
+        }
+
         return redirect()
             ->route('projects.show', [$office, $project])
             ->with('success', 'Project Created');
@@ -83,7 +131,16 @@ class ProjectController extends Controller
      */
     public function show(Office $office, Project $project)
     {
-        return view('project.show', compact('project', 'office'));
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            return view('project.show', compact('project', 'office'));
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                return view('project.show', compact('project', 'office'));
+            } else {
+                return abort(401);
+            }
+        }
     }
 
     /**
@@ -94,7 +151,16 @@ class ProjectController extends Controller
      */
     public function edit(Office $office, Project $project)
     {
-        return $this->create($office, $project);
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            return $this->create($office, $project);
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                return $this->create($office, $project);
+            } else {
+                return abort(401);
+            }
+        }
     }
 
     /**
@@ -106,7 +172,16 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Office $office, Project $project)
     {
-        $project->update($request->validated());
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $project->update($request->validated());
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $project->update($request->validated());
+            } else {
+                return abort(401);
+            }
+        }
         return redirect()
             ->route('projects.show', [$office, $project])
             ->with('success', 'Project Updated');
@@ -120,7 +195,16 @@ class ProjectController extends Controller
      */
     public function destroy(Office $office, Project $project)
     {
-        $project->delete();
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $project->delete();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $project->delete();
+            } else {
+                return abort(401);
+            }
+        }
         return redirect()
             ->back()
             ->with('success', 'Project Deleted');
@@ -153,17 +237,37 @@ class ProjectController extends Controller
         if (!$financial) {
             $financial = new Financial();
         }
-
-        $financials = $project
-            ->financial()
-            ->latest()
-            ->get();
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $financials = $project
+                ->financial()
+                ->latest()
+                ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $financials = $project
+                    ->financial()
+                    ->latest()
+                    ->get();
+            } else {
+                return abort(401);
+            }
+        }
         return view('project.financial', compact('project', 'office', 'financials', 'financial'));
     }
 
     public function financialEdit(Office $office, Project $project, Financial $financial)
     {
-        return $this->financial($office, $project, $financial);
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            return $this->financial($office, $project, $financial);
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                return $this->financial($office, $project, $financial);
+            } else {
+                return abort(401);
+            }
+        }
     }
 
     public function acheivement(Office $office, Project $project, Acheivement $acheivement = null)
@@ -171,11 +275,22 @@ class ProjectController extends Controller
         if (!$acheivement) {
             $acheivement = new Acheivement();
         }
-
-        $acheivements = $project
-            ->acheivement()
-            ->orderBy('status')
-            ->get();
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $acheivements = $project
+                ->acheivement()
+                ->orderBy('status')
+                ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $acheivements = $project
+                    ->acheivement()
+                    ->orderBy('status')
+                    ->get();
+            } else {
+                return abort(401);
+            }
+        }
         return view('project.acheivement', compact('project', 'office', 'acheivements', 'acheivement'));
     }
     public function acheivementEdit(Office $office, Project $project, Acheivement $acheivement)
@@ -185,10 +300,23 @@ class ProjectController extends Controller
 
     public function photo(Office $office, Project $project)
     {
-        $photos = $project
-            ->photo()
-            ->latest()
-            ->get();
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $photos = $project
+                ->photo()
+                ->latest()
+                ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $photos = $project
+                    ->photo()
+                    ->latest()
+                    ->get();
+            } else {
+                return abort(401);
+            }
+        }
+
         return view('project.photo', compact('project', 'office', 'photos'));
     }
 
@@ -197,11 +325,23 @@ class ProjectController extends Controller
         if (!$budget) {
             $budget = new Budget();
         }
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $budgets = $project
+                ->budget()
+                ->latest()
+                ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $budgets = $project
+                    ->budget()
+                    ->latest()
+                    ->get();
+            } else {
+                return abort(401);
+            }
+        }
 
-        $budgets = $project
-            ->budget()
-            ->latest()
-            ->get();
         $fiscalYears = FiscalYear::get();
         $budgetSources = BudgetSource::get();
         return view('project.budget', compact('project', 'office', 'budgets', 'budget', 'budgetSources', 'fiscalYears'));
@@ -217,12 +357,25 @@ class ProjectController extends Controller
         if (!$expenditure) {
             $expenditure = new Expenditure();
         }
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $expenditures = $project
+                ->expenditure()
+                ->orderBy('fiscal_year_id')
+                ->latest()
+                ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $expenditures = $project
+                    ->expenditure()
+                    ->orderBy('fiscal_year_id')
+                    ->latest()
+                    ->get();
+            } else {
+                return abort(401);
+            }
+        }
 
-        $expenditures = $project
-            ->expenditure()
-            ->orderBy('fiscal_year_id')
-            ->latest()
-            ->get();
         $fiscalYears = FiscalYear::get();
         $expenditureTypes = ExpenditureType::get();
         return view('project.expenditure', compact('project', 'office', 'expenditureTypes', 'expenditures', 'expenditure', 'fiscalYears'));
@@ -260,7 +413,7 @@ class ProjectController extends Controller
         if ($request->has('agreement')) {
             if ($request->agreement == true) {
                 $projects = $projects->whereNotNull('agreement_date');
-            }else{
+            } else {
                 $projects = $projects->where('agreement_date', null);
             }
         }
