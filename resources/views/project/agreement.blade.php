@@ -10,12 +10,9 @@
             <div class="col-md-12 py-2 bg-white">
 
                 <form
-                    action="{{ $project->id ? route('projects.update', [$office, $project]) : route('projects.store', $office) }}"
+                    action="{{ $project->id ? route('projects.physicalProgress.update', [$office, $project]) : route('projects.store', $office) }}"
                     method="post">
                     @csrf
-                    @if ($project->id)
-                        @method('put')
-                    @endif
                     <div class="row">
                         <div class="col-md-4">
                             <label for="agreement_date" class="form-label required">सम्झौता मिति</label>
@@ -130,19 +127,6 @@
                                     </div>
                                 </div>
 
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <label for="description" class="form-label">कैफियत</label>
-                            <div class="input-group mb-3">
-                                <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description"
-                                    aria-describedby="description">{{ old('description', $project->description) }}</textarea>
-                                <div class="invalid-feedback">
-                                    @error('description')
-                                        {{ $message }}
-                                    @enderror
-
-                                </div>
                             </div>
                         </div>
                     </div>

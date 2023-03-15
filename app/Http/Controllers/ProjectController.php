@@ -188,7 +188,22 @@ class ProjectController extends Controller
             ->route('projects.show', [$office, $project])
             ->with('success', 'Project Updated');
     }
-
+    public function physicalProgressUpdate(Request $request, Office $office, Project $project)
+    {
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $project->update($request->all());
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $project->update($request->all());
+            } else {
+                return abort(401);
+            }
+        }
+        return redirect()
+            ->route('projects.physicalProgress', [$office, $project])
+            ->with('success', 'Project Updated');
+    }
     /**
      * Remove the specified resource from storage.
      *

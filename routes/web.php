@@ -87,6 +87,7 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
     // Route::get('projects/{office}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
     Route::get('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
+    Route::post('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgressUpdate'])->name('projects.physicalProgress.update');
     Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
     Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
@@ -172,8 +173,8 @@ Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
     Route::get('projects/{office}/excel', [ProjectController::class, 'excel'])->name('projects.excel');
 
     Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
-    // Route::get('projects/{office}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
     Route::get('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
+    Route::post('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgressUpdate'])->name('projects.physicalProgress.update');
     Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
     Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
@@ -233,8 +234,8 @@ Route::group(['middleware' => ['role:Super-Admin|admin|user']], function () {
     Route::get('projects/{office}/excel', [ProjectController::class, 'excel'])->name('projects.excel');
 
     Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
-    // Route::get('projects/{office}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
     Route::get('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
+    Route::post('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgressUpdate'])->name('projects.physicalProgress.update');
     Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
     Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
