@@ -11,7 +11,17 @@
 
 </head>
 
-<body>
+<body  class="bg-primary">
+    <div class="container py-2">
+        <div class="row justify-content-center gap-2">
+            <div class="text-center text-white font-weight-bold py-2" style="margin-top: 5%">
+                <img src="{{ asset('img/logo.png') }}" alt="{{ env('APP_NAME') }}" class="my-1" height="100">
+                <h6>नेपाल सरकार</h6>
+                <h3>सुदूरपश्चिम प्रदेश</h3>
+                <h5>आयोजना व्यवस्थापन सूचना प्रणाली</h5>
+            </div>
+        </div>
+    </div>
     @yield('content')
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
