@@ -120,6 +120,16 @@
                         @csrf
                     </form>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('logs') }}">
+                        <i class="bi bi-clock-history"></i>
+                        <p>
+                            {{ __('Log Viewer') }}
+                        </p>
+                    </a>
+
+               
+                </li>
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

@@ -13,7 +13,6 @@ use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\UserController;
-use App\Models\Budget;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -141,6 +140,9 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
 
     //user profile
     Route::get('profile', [UserController::class, 'profile'])->name('users.profile');
+
+    //log-viewer
+    Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('logs');
 });
 
 Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
