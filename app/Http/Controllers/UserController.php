@@ -76,22 +76,27 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        if ($user->hasRole('Super-Admin')) {
+        if (Auth::user()->hasRole('Super-Admin')) {
             $validatedData = $request->validate([
-                'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+                'email' => ['required', 'email', 'unique:users,email,' .$user->id],
                 'name' => ['required', 'string', 'max:255'],
                 'office_id' => ['required', 'string', 'max:255'],
                 'role' => ['required'],
             ]);
+            
             $user->syncRoles($validatedData['role']);
+            $user = $user->update($validatedData);
+            
         } else {
+            
             $validatedData = $request->validate([
                 'email' => ['required', 'email', 'unique:users,email,' . $user->id],
                 'name' => ['required', 'string', 'max:255'],
             ]);
             $user = User::findOrFail(Auth::user()->id);
+            $user = $user->update($validatedData);
         }
-        $user = $user->update($validatedData);
+       
         return redirect()
             ->back()
             ->with('success', 'User Updated');
@@ -113,9 +118,12 @@ class UserController extends Controller
 
     public function changePassword(Request $request, User $user)
     {
-        if ($user->hasRole('Super-Admin')) {
+        if (Auth::user()->hasRole('Super-Admin')) {
             $validatedData = $request->validate([
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
+            ]);
+            $user->update([
+                'password' => Hash::make($validatedData['password']),
             ]);
             return redirect()
                 ->back()
