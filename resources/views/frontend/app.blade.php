@@ -11,7 +11,7 @@
 
 </head>
 
-<body  class="bg-primary">
+<body  style="background-color: #1c4267">
     <div class="container py-2">
         <div class="row justify-content-center gap-2">
             <div class="text-center text-white font-weight-bold py-2" style="margin-top: 5%">
