@@ -232,7 +232,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <a href="{{ route('budget-sources.index') }}" class="nav-link text-white">
                         <i class="bi bi-bank nav-icon"></i>
                         <p>बजेट स्रोत</p>
@@ -249,7 +249,7 @@
                         <i class="bi bi-diagram-2 nav-icon"></i>
                         <p>खर्चको किसिम</p>
                     </a>
-                </li>
+                </li> --}}
 
                 <hr>
                 <li class="nav-item">
