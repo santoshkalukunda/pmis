@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActiveFiscalYear;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $activeFiscalYear = ActiveFiscalYear::first();
+        Session::put('active_fiscal_year', $activeFiscalYear->fiscal_year_id);
         return view('home');
     }
 }
