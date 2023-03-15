@@ -14,7 +14,9 @@ class ProjectActiveFiscalYear extends Component
 
     public function fiscalYearChanged()
     {
+        $this->activeFiscalYear = Session::get('active_fiscal_year');
     }
+
 
     public function mount($fiscalYear)
     {

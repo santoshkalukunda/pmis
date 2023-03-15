@@ -9,8 +9,15 @@ use Livewire\Component;
 class ActiveFiscalYearButton extends Component
 {
     public $fiscal_year_id;
-
+    protected $listeners = ['fiscalYearChanged'];
+    
     public function mount(){
+        $this->fiscal_year_id= Session::get('active_fiscal_year');
+    }
+
+
+    public function fiscalYearChanged()
+    {
         $this->fiscal_year_id= Session::get('active_fiscal_year');
     }
 
