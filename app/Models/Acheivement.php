@@ -24,6 +24,6 @@ class Acheivement extends Model
 
     public function fiscalYear()
     {
-        return $this->belongsTo(fiscalYear::class);
+        return $this->belongsTo(FiscalYear::class);
     }
 }
