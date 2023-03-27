@@ -409,7 +409,7 @@ class ProjectController extends Controller
 
         if ($request->has('district')) {
             if ($request->district != null) {
-                $projects = $projects->where('district', $request->district);
+                $projects = $projects->where('district',$request->district);
             }
         }
         if ($request->has('municipality')) {
@@ -427,13 +427,7 @@ class ProjectController extends Controller
                 $projects = $projects->where('project_type_id', $request->project_type_id);
             }
         }
-        if ($request->has('agreement')) {
-            if ($request->agreement == true) {
-                $projects = $projects->whereNotNull('agreement_date');
-            } else {
-                $projects = $projects->where('agreement_date', null);
-            }
-        }
+      
         if ($request->has('status')) {
             if ($request->status != null) {
                 $projects = $projects->where('status', $request->status);

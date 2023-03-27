@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\FiscalYear;
 use App\Models\Office;
 use App\Models\Project;
 use App\Models\ProjectType;
@@ -30,6 +31,7 @@ class ProjectFilter extends Component
     public function render()
     {
         $projectTypes = ProjectType::get();
-        return view('components.project-filter', compact('projectTypes'));
+        $fiscalYears = FiscalYear::get();
+        return view('components.project-filter', compact('projectTypes','fiscalYears'));
     }
 }
