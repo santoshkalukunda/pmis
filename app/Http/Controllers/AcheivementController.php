@@ -74,9 +74,12 @@ class AcheivementController extends Controller
      */
     public function update(UpdateAcheivementRequest $request, Acheivement $acheivement)
     {
+        $office = $acheivement->project->office;
+        $project = $acheivement->project;
+        
         $acheivement->update($request->validated());
         return redirect()
-            ->back()
+            ->route('projects.acheivement',[$office, $project])
             ->with('success', 'Acheivement updated');
     }
 
