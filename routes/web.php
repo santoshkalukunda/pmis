@@ -8,6 +8,7 @@ use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\ExpenditureTypeController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\FiscalYearController;
+use App\Http\Controllers\IndicatorController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\PhotoController;
 use App\Http\Controllers\ProjectController;
@@ -108,6 +109,14 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::post('acheivements/{project}', [AcheivementController::class, 'store'])->name('acheivements.store');
     Route::put('acheivements/{acheivement}', [AcheivementController::class, 'update'])->name('acheivements.update');
     Route::delete('acheivements/{acheivement}', [AcheivementController::class, 'destroy'])->name('acheivements.destroy');
+
+    //indicators
+    Route::get('projects/{office}/{project}/indicators', [ProjectController::class, 'indicator'])->name('projects.indicator');
+    Route::get('projects/{office}/{project}/indicators/{indicator}/edit', [ProjectController::class, 'indicatorEdit'])->name('projects.indicator.edit');
+
+    Route::post('indicators/{project}', [IndicatorController::class, 'store'])->name('indicators.store');
+    Route::put('indicators/{indicator}', [IndicatorController::class, 'update'])->name('indicators.update');
+    Route::delete('indicators/{indicator}', [IndicatorController::class, 'destroy'])->name('indicators.destroy');
 
     //photos
     Route::get('projects/{office}/{project}/photos', [ProjectController::class, 'photo'])->name('projects.photos');

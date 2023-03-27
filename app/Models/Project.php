@@ -66,6 +66,10 @@ class Project extends Model
         return $this->hasMany(Acheivement::class,'project_id');
     }
 
+    public function indicator(){
+        return $this->hasMany(Indicator::class,'project_id');
+    }
+
     public function photo(){
         return $this->hasMany(Photo::class,'project_id');
     }

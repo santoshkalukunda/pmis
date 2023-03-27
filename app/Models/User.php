@@ -75,5 +75,9 @@ class User extends Authenticatable
     public function office(){
         return $this->belongsTo(Office::class, 'office_id');
     }
+    
+    public function indicator(){
+        return $this->hasMany(Indicator::class,'created_by');
+    }
 }
 

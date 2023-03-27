@@ -21,6 +21,9 @@
     <li class="nav-item">
         <a class="nav-link text-dark {{ request()->routeIs('projects.acheivement') ? 'active' : '' }}" href="{{route('projects.acheivement',[$office, $project])}}">उपलब्धिहरू</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark {{ request()->routeIs('projects.indicator') ? 'active' : '' }}" href="{{route('projects.indicator',[$office, $project])}}">सूचकहरू</a>
+    </li>
    
     <li class="nav-item">
         <a class="nav-link text-dark {{ request()->routeIs('projects.photos') ? 'active' : '' }}" href="{{route('projects.photos',[$office, $project])}}">तस्बीरहरू</a>

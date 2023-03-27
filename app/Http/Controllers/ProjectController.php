@@ -13,6 +13,7 @@ use App\Models\Expenditure;
 use App\Models\ExpenditureType;
 use App\Models\Financial;
 use App\Models\FiscalYear;
+use App\Models\Indicator;
 use App\Models\Office;
 use App\Models\ProjectSource;
 use App\Models\ProjectType;
@@ -313,6 +314,35 @@ class ProjectController extends Controller
     public function acheivementEdit(Office $office, Project $project, Acheivement $acheivement)
     {
         return $this->acheivement($office, $project, $acheivement);
+    }
+
+
+    public function indicator(Office $office, Project $project, Indicator $indicator = null)
+    {
+        if (!$indicator) {
+            $indicator = new Indicator();
+        }
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $indicators = $project
+                ->indicator()
+                ->orderBy('status')
+                ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $indicators = $project
+                    ->indicator()
+                    ->orderBy('status')
+                    ->get();
+            } else {
+                return abort(401);
+            }
+        }
+        return view('project.indicator', compact('project', 'office', 'indicators', 'indicator'));
+    }
+    public function indicatorEdit(Office $office, Project $project, Indicator $indicator)
+    {
+        return $this->indicator($office, $project, $indicator);
     }
 
     public function photo(Office $office, Project $project)
