@@ -26,7 +26,29 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
 
     public function headings(): array
     {
-        return ['आयोजनाको नाम', 'कार्यालय', 'आयोजनाको किसिम', 'जिल्ला', 'स्थानिय तह', 'वड नम्बर', 'आयोजना सुरु भयको आ.ब.', 'स्वीकृत लागत अनुमान', 'अपेक्षित उपलब्धि', 'लाभाम्वित हुने जनसंख्या', 'सम्झौता रकम', 'हालसम्मको भौतिक प्रगति','हालसम्मको कुल विनियोजित बजेट', 'हालसम्मको कुल खर्च', 'हालको मुख्य उपलब्धि','चालु आ. ब.को कुल विनियोजित बजेट', 'चालु आ. ब.को कुल खर्च', 'चालु आ. ब.मा हुने मुख्य उपलब्धि', 'आयोजनाको स्थिति', 'कैफियत'];
+        return [
+            'आयोजनाको नाम',
+             'कार्यालय', 
+             'आयोजनाको किसिम', 
+             'जिल्ला', 
+             'स्थानिय तह',
+             'वड नम्बर', 
+             'आयोजना सुरु भयको आ.ब.', 
+             'स्वीकृत लागत अनुमान', 
+             'अपेक्षित उपलब्धि', 
+             'लाभाम्वित हुने जनसंख्या', 
+             'सम्झौता रकम', 
+             'हालसम्मको भौतिक प्रगति',
+             'हालसम्मको कुल विनियोजित बजेट', 
+             'हालसम्मको कुल खर्च', 
+             'हालको मुख्य उपलब्धि',
+             'हालको मुख्य सूचक',
+             'चालु आ. ब.को कुल विनियोजित बजेट', 
+             'चालु आ. ब.को कुल खर्च', 
+             'चालु आ. ब.मा हुने मुख्य उपलब्धि', 
+             'चालु आ. ब.मा हुने मुख्य सूचक', 
+             'आयोजनाको स्थिति', 
+             'कैफियत'];
     }
 
     public function collection()
@@ -109,6 +131,14 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
                     ->pluck('name')
                     ->toArray(),
             ),
+            implode(
+                ', ',
+                $projects
+                    ->indicator()
+                    ->where('status', 1)
+                    ->pluck('name')
+                    ->toArray(),
+            ),
             $this->request->has('fiscal_year_id')
             ? $projects
                 ->budget()
@@ -127,14 +157,38 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
                     ->expenditure()
                     ->where('fiscal_year_id', Session::get('active_fiscal_year'))
                     ->sum('expenditure'),
-            implode(
+            $this->request->has('fiscal_year_id') ? implode(
                 ', ',
                 $projects
                     ->acheivement()
+                    ->where('fiscal_year_id', $this->request->fiscal_year_id)
+                    ->where('status', 0)
+                    ->pluck('name')
+                    ->toArray(),
+            ) : implode(
+                ', ',
+                $projects
+                    ->acheivement()
+                    ->where('fiscal_year_id', Session::get('active_fiscal_year'))
                     ->where('status', 0)
                     ->pluck('name')
                     ->toArray(),
             ),
+            $this->request->has('fiscal_year_id') ? implode(
+                ', ',
+                $projects
+                    ->indicator()
+                    ->where('status', 0)
+                    ->pluck('name')
+                    ->toArray(),
+            ) : implode(
+                ', ',
+                $projects
+                    ->indicator()
+                    ->where('fiscal_year_id', Session::get('active_fiscal_year'))
+                    ->where('status', 0)
+                    ->pluck('name')
+                    ->toArray()),
             $projects->status == 1 ? 'सम्पन्न भइसकेको छ' : 'काम भइरहेको छ',
             strip_tags($projects->description),
         ];
