@@ -26,7 +26,7 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
 
     public function headings(): array
     {
-        return ['आयोजनाको नाम', 'कार्यालय', 'आयोजनाको किसिम', 'जिल्ला', 'स्थानिय तह', 'वड नम्बर', 'आयोजना सुरु भयको आ.ब.', 'स्वीकृत लागत अनुमान', 'अपेक्षित उपलब्धि', 'लाभाम्वित हुने जनसंख्या', 'सम्झौता रकम', 'हालसम्मको भौतिक प्रगति', 'हालसम्मको कुल खर्च', 'हालको मुख्य उपलब्धि', 'चालु आ. ब.को कुल खर्च', 'चालु आ. ब.मा हुने मुख्य उपलब्धि', 'आयोजनाको स्थिति', 'कैफियत'];
+        return ['आयोजनाको नाम', 'कार्यालय', 'आयोजनाको किसिम', 'जिल्ला', 'स्थानिय तह', 'वड नम्बर', 'आयोजना सुरु भयको आ.ब.', 'स्वीकृत लागत अनुमान', 'अपेक्षित उपलब्धि', 'लाभाम्वित हुने जनसंख्या', 'सम्झौता रकम', 'हालसम्मको भौतिक प्रगति','हालसम्मको कुल विनियोजित बजेट', 'हालसम्मको कुल खर्च', 'हालको मुख्य उपलब्धि','चालु आ. ब.को कुल विनियोजित बजेट', 'चालु आ. ब.को कुल खर्च', 'चालु आ. ब.मा हुने मुख्य उपलब्धि', 'आयोजनाको स्थिति', 'कैफियत'];
     }
 
     public function collection()
@@ -98,6 +98,8 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
             $projects->population_to_be_benefited,
             $projects->tender_amount,
             $projects->physical_progress,
+            
+            $projects->budget()->sum('budget'),
             $projects->expenditure()->sum('expenditure'),
             implode(
                 ', ',
@@ -107,6 +109,15 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
                     ->pluck('name')
                     ->toArray(),
             ),
+            $this->request->has('fiscal_year_id')
+            ? $projects
+                ->budget()
+                ->where('fiscal_year_id', $this->request->fiscal_year_id)
+                ->sum('budget')
+            : $projects
+                ->budget()
+                ->where('fiscal_year_id', Session::get('active_fiscal_year'))
+                ->sum('budget'),
             $this->request->has('fiscal_year_id')
                 ? $projects
                     ->expenditure()
