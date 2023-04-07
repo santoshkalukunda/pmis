@@ -31,7 +31,7 @@ class StoreProjectRequest extends FormRequest
             'fiscal_year_id' => 'nullable',
             'project_type_id' => 'nullable',
             'budget_subtitle' => 'nullable',
-            'budget' => 'required',
+            'approval_budget' => 'required',
             'expenditure_subtitle' => 'nullable',
             'population_to_be_benefited' => 'nullable',
             'agreement_date' => 'nullable|date',

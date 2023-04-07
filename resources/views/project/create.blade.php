@@ -95,15 +95,15 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="budget" class="form-label required">स्वीकृति बजेट</label>
+                                    <label for="approval_budget" class="form-label required">स्वीकृति बजेट</label>
                                     <div class="input-group mb-3">
-                                        <span class="input-group-text" id="budget">रु.</span>
-                                        <input type="number" min="1" name="budget"
-                                            class="form-control @error('budget') is-invalid @enderror"
-                                            value="{{ old('budget', $project->budget) }}" id="budget"
-                                            aria-describedby="budget">
+                                        <span class="input-group-text" id="approval_budget">रु.</span>
+                                        <input type="number" min="1" name="approval_budget"
+                                            class="form-control @error('approval_budget') is-invalid @enderror"
+                                            value="{{ old('approval_budget', $project->approval_budget) }}" id="approval_budget"
+                                            aria-describedby="approval_budget">
                                         <div class="invalid-feedback">
-                                            @error('budget')
+                                            @error('approval_budget')
                                                 {{ $message }}
                                             @enderror
 

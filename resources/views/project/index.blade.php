@@ -55,7 +55,7 @@
                                             <td>{{ $project->municipality }}</td>
                                             <td>{{ $project->ward_no }}</td>
                                             <td>{{ $project->fiscalYear->fiscal_year }}</td>
-                                            <td class="text-right">{{ $project->budget }}</td>
+                                            <td class="text-right">{{ $project->approval_budget }}</td>
                                             <td class="text-right">{{ $project->population_to_be_benefited }}</td>
                                             <td>
                                                 <div id="agreement_date-{{ $project->id }}"></div>
