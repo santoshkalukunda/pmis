@@ -25,14 +25,14 @@ class CreateProjectsTable extends Migration
             $table->string('district')->nullable();
             $table->string('ward_no')->nullable();
             $table->foreignId('fiscal_year_id')->constrained('fiscal_years')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
-            $table->integer('budget_subtitle')->nullable();
-            $table->integer('budget')->nullable();
+            $table->string('budget_subtitle')->nullable();
+            $table->string('budget')->nullable();
             $table->string('expenditure_subtitle')->nullable();
             $table->string('population_to_be_benefited')->nullable();
             $table->string('tender_amount')->nullable();
             $table->string('agreement_date')->nullable();
             $table->string('project_start_date')->nullable();
-            $table->integer('physical_progress')->nullable();
+            $table->string('physical_progress')->nullable();
             $table->boolean('status')->default(false);
             $table->string('project_completion_date')->nullable();
             $table->text('description')->nullable();
