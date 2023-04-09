@@ -27,7 +27,7 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="ward_no" class="form-label required">वडा नम्बर</label>
-                                        <input type="number" min="1" name="ward_no"
+                                        <input type="string" name="ward_no"
                                             class="form-control @error('ward_no') is-invalid @enderror"
                                             value="{{ old('ward_no', $project->ward_no) }}" id="ward_no"
                                             aria-describedby="ward_no">
@@ -187,11 +187,11 @@
                                     </div>
                                 </div> --}}
                                 <div class="col-md-4">
-                                    <label for="population_to_be_benefited" class="form-label required">लाभाम्वित हुने
+                                    <label for="population_to_be_benefited" class="form-label">लाभाम्वित हुने
                                         जनसंख्या</label>
                                     <div class="input-group mb-3">
                                         {{-- <span class="input-group-text" id="population_to_be_benefited">रु.</span> --}}
-                                        <input type="number" min="1" name="population_to_be_benefited"
+                                        <input type="text" name="population_to_be_benefited"
                                             class="form-control @error('population_to_be_benefited') is-invalid @enderror"
                                             value="{{ old('population_to_be_benefited', $project->population_to_be_benefited) }}"
                                             id="population_to_be_benefited" aria-describedby="population_to_be_benefited">
