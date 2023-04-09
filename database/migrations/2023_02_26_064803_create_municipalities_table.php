@@ -15,7 +15,6 @@ class CreateMunicipalitiesTable extends Migration
     {
         Schema::create('municipalities', function (Blueprint $table) {
             $table->id();
-            $table->string('slug');
             $table->string('province');
             $table->string('district');
             $table->string('name');

@@ -17,43 +17,43 @@ class FiscalYearSeeder extends Seeder
     {
         $fiscalYears = [
             [
-                'fiscal_year' => '2079/80',
+                'fiscal_year' => '२०७९/८०',
             ],
             [
-                'fiscal_year' => '2078/79',
+                'fiscal_year' => '२०७८/७९',
             ],
             [
-                'fiscal_year' => '2077/78',
+                'fiscal_year' => '२०७७/७८',
             ],
             [
-                'fiscal_year' => '2076/77',
+                'fiscal_year' => '२०७६/७७',
             ],
             [
-                'fiscal_year' => '2075/76',
+                'fiscal_year' => '२०७५/७६',
             ],
             [
-                'fiscal_year' => '2074/75',
+                'fiscal_year' => '२०७४/७५',
             ],
             [
-                'fiscal_year' => '2073/74',
+                'fiscal_year' => '२०७३/७४',
             ],
             [
-                'fiscal_year' => '2072/73',
+                'fiscal_year' => '२०७२/७३',
             ],
             [
-                'fiscal_year' => '2071/72',
+                'fiscal_year' => '२०७१/७२',
             ],
             [
-                'fiscal_year' => '2070/71',
+                'fiscal_year' => '२०७०/७१',
             ],
             [
-                'fiscal_year' => '2069/70',
+                'fiscal_year' => '२०६९/७०',
             ],
             [
-                'fiscal_year' => '2068/69',
+                'fiscal_year' => '२०६८/६९',
             ],
             [
-                'fiscal_year' => '2067/68',
+                'fiscal_year' => '२०६७/६८',
             ],
         ];
         foreach ($fiscalYears as $fiscalYear) {
