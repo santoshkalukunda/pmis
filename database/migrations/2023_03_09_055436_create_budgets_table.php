@@ -20,7 +20,7 @@ class CreateBudgetsTable extends Migration
             $table->foreignId('fiscal_year_id')->constrained('fiscal_years')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->string('date')->nullable();
             $table->integer('budget')->nullable();
-            $table->integer('budget_subtitle')->nullable();
+            $table->string('budget_subtitle')->nullable();
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();
