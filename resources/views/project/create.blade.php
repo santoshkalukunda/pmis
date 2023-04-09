@@ -27,8 +27,8 @@
                                 <div class="col-md-4">
                                     <div class="mb-3">
                                         <label for="ward_no" class="form-label required">वडा नम्बर</label>
-                                        <input type="string" name="ward_no"
-                                            class="form-control @error('ward_no') is-invalid @enderror"
+                                        <input type="number" min="1" name="ward_no"
+                                            class="form-control font-kalimati @error('ward_no') is-invalid @enderror"
                                             value="{{ old('ward_no', $project->ward_no) }}" id="ward_no"
                                             aria-describedby="ward_no">
                                         <div class="invalid-feedback">
@@ -83,7 +83,7 @@
                                         न.</label>
                                     <div class="input-group mb-3">
                                        <input type="text" name="budget_subtitle"
-                                            class="form-control @error('budget_subtitle') is-invalid @enderror"
+                                            class="form-control font-kalimati @error('budget_subtitle') is-invalid @enderror"
                                             value="{{ old('budget_subtitle', $project->budget_subtitle) }}"
                                             id="budget_subtitle" aria-describedby="budget_subtitle">
                                         <div class="invalid-feedback">
@@ -99,7 +99,7 @@
                                     <div class="input-group mb-3">
                                         <span class="input-group-text" id="approval_budget">रु.</span>
                                         <input type="number" min="1" name="approval_budget"
-                                            class="form-control @error('approval_budget') is-invalid @enderror"
+                                            class="form-control font-kalimati @error('approval_budget') is-invalid @enderror"
                                             value="{{ old('approval_budget', $project->approval_budget) }}" id="approval_budget"
                                             aria-describedby="approval_budget">
                                         <div class="invalid-feedback">
@@ -115,7 +115,7 @@
                                         न.</label>
                                     <div class="input-group mb-3">
                                         <input type="text" name="expenditure_subtitle"
-                                            class="form-control @error('expenditure_subtitle') is-invalid @enderror"
+                                            class="form-control font-kalimati @error('expenditure_subtitle') is-invalid @enderror"
                                             value="{{ old('expenditure_subtitle', $project->expenditure_subtitle) }}"
                                             id="expenditure_subtitle" aria-describedby="expenditure_subtitle">
                                         <div class="invalid-feedback">
@@ -192,7 +192,7 @@
                                     <div class="input-group mb-3">
                                         {{-- <span class="input-group-text" id="population_to_be_benefited">रु.</span> --}}
                                         <input type="text" name="population_to_be_benefited"
-                                            class="form-control @error('population_to_be_benefited') is-invalid @enderror"
+                                            class="form-control font-kalimati @error('population_to_be_benefited') is-invalid @enderror"
                                             value="{{ old('population_to_be_benefited', $project->population_to_be_benefited) }}"
                                             id="population_to_be_benefited" aria-describedby="population_to_be_benefited">
                                         <div class="invalid-feedback">
@@ -294,73 +294,7 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-
             $('#description').summernote();
-            $('#agreement_date_bs').nepaliDatePicker({
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 100
-            });
-            $('#project_start_date_bs').nepaliDatePicker({
-
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 100
-
-            });
-
-            document.getElementById('agreement_date_bs').value = NepaliFunctions.AD2BS(
-                "{{ $project->agreement_date }}");
-            document.getElementById('project_start_date_bs').value = NepaliFunctions.AD2BS(
-                "{{ $project->project_start_date }}");
-            document.getElementById('project_completion_date_bs').value = NepaliFunctions.AD2BS(
-                "{{ $project->project_completion_date }}");
-
-
-            var x = document.getElementById("project_complete");
-            x.style.display = "none";
-            var status = "{{ $project->status }}";
-
-            if (status == 1) {
-                x.style.display = "block";
-            }
-
         });
-
-        function ADConvert() {
-            //project agreement date bs to ad
-            var agreement_date_bs = document.getElementById('agreement_date_bs').value;
-            document.getElementById('agreement_date').value = NepaliFunctions.BS2AD(agreement_date_bs);
-
-            //project start date bs to ad
-            var project_start_date_bs = document.getElementById('project_start_date_bs').value;
-            document.getElementById('project_start_date').value = NepaliFunctions.BS2AD(project_start_date_bs);
-
-            //project compeletion date bs to ad
-            var project_completion_date_bs = document.getElementById('project_completion_date_bs').value;
-            document.getElementById('project_completion_date').value = NepaliFunctions.BS2AD(project_completion_date_bs);
-
-            var status = document.getElementById("status").value;
-            if (status == 0) {
-                document.getElementById('project_completion_date_bs').value = "";
-                document.getElementById('project_completion_date').value = "";
-            }
-        }
-
-        function handleOptionChange(event) {
-            var x = document.getElementById("project_complete");
-            const selectedOption = event.target.value;
-            if (selectedOption === '1') {
-                x.style.display = "block";
-            } else {
-                x.style.display = "none";
-            }
-            $('#project_completion_date_bs').nepaliDatePicker({
-
-                ndpYear: true,
-                ndpMonth: true,
-                ndpYearCount: 100
-            });
-        }
     </script>
 @endpush

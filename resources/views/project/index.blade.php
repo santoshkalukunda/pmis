@@ -53,21 +53,21 @@
                                             <td>{{ $project->projectType->name ?? '' }}</td>
                                             <td>{{ $project->district }}</td>
                                             <td>{{ $project->municipality }}</td>
-                                            <td>{{ $project->ward_no }}</td>
+                                            <td class="font-kalimati">{{ $project->ward_no }}</td>
                                             <td>{{ $project->fiscalYear->fiscal_year }}</td>
-                                            <td class="text-right">{{ $project->approval_budget }}</td>
-                                            <td class="text-right">{{ $project->population_to_be_benefited }}</td>
+                                            <td class="text-right font-kalimati">{{ $project->approval_budget }}</td>
+                                            <td class="text-right font-kalimati">{{ $project->population_to_be_benefited }}</td>
                                             <td>
-                                                <div id="agreement_date-{{ $project->id }}"></div>
+                                                <div class="font-kalimati" id="agreement_date-{{ $project->id }}"></div>
                                             </td>
-                                            <td class="text-right">{{ $project->tender_amount }}</td>
+                                            <td class="text-right font-kalimati">{{ $project->tender_amount }}</td>
                                             <td>
-                                                <div id="project_start_date-{{ $project->id }}"></div>
+                                                <div class="font-kalimati" id="project_start_date-{{ $project->id }}"></div>
                                             </td>
-                                            <td class="text-right">{{ $project->physical_progress }}</td>
+                                            <td class="text-right font-kalimati">{{ $project->physical_progress }}</td>
                                             <td>{{ $project->status == true ? 'सम्पन्न भइसकेको छ' : 'काम भइरहेको छ' }}</td>
                                             <td>
-                                                <div id="project_completion_date-{{ $project->id }}"></div>
+                                                <div class="font-kalimati" id="project_completion_date-{{ $project->id }}"></div>
                                             </td>
 
                                             <td class="text-center">

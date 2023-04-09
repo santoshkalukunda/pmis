@@ -22,7 +22,7 @@
                         <div class="col-md-2">
                             <label for="date" class="form-label required">मिति</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control @error('date_bs') is-invalid @enderror"
+                                <input type="text" class="form-control font-kalimati @error('date_bs') is-invalid @enderror"
                                     value="{{ old('date_bs') }}" id="date_bs" aria-describedby="date_bs"
                                     placeholder="YYYY-MM-DD">
 
@@ -43,7 +43,7 @@
                                 न.</label>
                             <div class="input-group mb-3">
                                 <input type="text" name="expenditure_subtitle"
-                                    class="form-control @error('expenditure_subtitle') is-invalid @enderror"
+                                    class="form-control font-kalimati @error('expenditure_subtitle') is-invalid @enderror"
                                     value="{{ old('expenditure_subtitle', $expenditure->expenditure_subtitle ? $expenditure->expenditure_subtitle : $project->expenditure_subtitle) }}"
                                     id="expenditure_subtitle" aria-describedby="expenditure_subtitle">
                                 <div class="invalid-feedback">
@@ -82,7 +82,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="expenditure">रु.</span>
                                 <input type="number" min="1" name="expenditure"
-                                    class="form-control @error('expenditure') is-invalid @enderror"
+                                    class="form-control font-kalimati @error('expenditure') is-invalid @enderror"
                                     value="{{ old('expenditure', $expenditure->expenditure) }}" id="expenditure"
                                     aria-describedby="expenditure">
                                 <div class="invalid-feedback">
@@ -151,11 +151,11 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $expenditure->fiscalYear->fiscal_year }}</td>
-                                    <td><span id="date-{{ $expenditure->id }}"></span></td>
+                                    <td><span class="font-kalimati" id="date-{{ $expenditure->id }}"></span></td>
                                     <td>{{ $expenditure->expenditureType->name }}</td>
-                                    <td>{{ $expenditure->expenditure_subtitle }}</td>
+                                    <td class="font-kalimati">{{ $expenditure->expenditure_subtitle }}</td>
                                     <td>{{ $expenditure->remarks }}</td>
-                                    <td class="text-right">{{ $expenditure->expenditure }}</td>
+                                    <td class="text-right font-kalimati" >{{ $expenditure->expenditure }}</td>
                                     <td>
                                         <div class="">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i
@@ -202,7 +202,7 @@
                                 <td class="text-right" colspan="5">
                                     जम्मा
                                 </td>
-                                <td class="text-right">
+                                <td class="text-right font-kalimati">
                                     {{$totalExpenditure}}
                                 </td>
                             </tr>

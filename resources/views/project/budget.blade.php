@@ -22,7 +22,7 @@
                         <div class="col-md-2">
                             <label for="date" class="form-label required">मिति</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control @error('date_bs') is-invalid @enderror"
+                                <input type="text" class="form-control font-kalimati @error('date_bs') is-invalid @enderror"
                                     value="{{ old('date_bs') }}" id="date_bs" aria-describedby="date_bs"
                                     placeholder="YYYY-MM-DD">
 
@@ -43,7 +43,7 @@
                                 न.</label>
                             <div class="input-group mb-3">
                                <input type="text" name="budget_subtitle"
-                                    class="form-control @error('budget_subtitle') is-invalid @enderror"
+                                    class="form-control font-kalimati @error('budget_subtitle') is-invalid @enderror"
                                     value="{{ old('budget_subtitle', $budget->budget_subtitle ? $budget->budget_subtitle : $project->budget_subtitle) }}"
                                     id="budget_subtitle" aria-describedby="budget_subtitle">
                                 <div class="invalid-feedback">
@@ -81,7 +81,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="budget">रु.</span>
                                 <input type="number" min="1" name="budget"
-                                    class="form-control @error('budget') is-invalid @enderror"
+                                    class="form-control font-kalimati @error('budget') is-invalid @enderror"
                                     value="{{ old('budget', $budget->budget) }}" id="budget"
                                     aria-describedby="budget">
                                 <div class="invalid-feedback">
@@ -133,10 +133,10 @@
                                 @endphp
                                 <tr>
                                     <td>{{ $budget->fiscalYear->fiscal_year }}</td>
-                                    <td><span id="date-{{ $budget->id }}"></span></td>
-                                    <td>{{ $budget->budgetSource->name }}</td>
-                                    <td>{{ $budget->budget_subtitle }}</td>
-                                    <td class="text-right">{{ $budget->budget }}</td>
+                                    <td class="font-kalimati"><span id="date-{{ $budget->id }}"></span></td>
+                                    <td class="font-kalimati">{{ $budget->budgetSource->name }}</td>
+                                    <td class="font-kalimati">{{ $budget->budget_subtitle }}</td>
+                                    <td class="text-right font-kalimati">{{ $budget->budget }}</td>
                                     <td>
                                         <div class="">
                                             <a class="icon" href="#" data-bs-toggle="dropdown"><i
@@ -183,7 +183,7 @@
                                 <td class="text-right" colspan="4">
                                     जम्मा
                                 </td>
-                                <td class="text-right">
+                                <td class="text-right font-kalimati">
                                     {{$totalAllocatedbudget}}
                                 </td>
                             </tr>

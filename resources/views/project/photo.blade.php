@@ -32,7 +32,7 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
-                            <label for="myfile">Select a Photo:</label>
+                            <label for="myfile"> <div>तस्बीर अपलोड गर्नुहोस्:</div> </label>
                             <input type="file" id="myfile" name="photo" accept="image/*">
                         </div>
                         <div class="col-md-1 mt-4 py-2 md-mt-0 md-py-0">
