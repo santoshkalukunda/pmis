@@ -109,7 +109,7 @@ class ProjectExport implements FromCollection, WithHeadings, WithMapping
             $projects->municipality,
             $projects->ward_no,
             $projects->fiscalYear->fiscal_year,
-            $projects->budget,
+            $projects->approval_budget,
             implode(
                 ', ',
                 $projects
