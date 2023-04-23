@@ -52,7 +52,7 @@
                     <div class="text-center font-kalimati">हालसम्मको आर्थिक प्रगति
                         रु.{{ $project->budget()->sum('budget') }}/- को
                         रु.{{ $project->expenditure()->sum('expenditure') }}/- को
-                        {{ $expenditurePercentage = round(($project->expenditure()->sum('expenditure') * 100) / $project->budget()->sum('budget'), 2) }}%
+                        {{ $expenditurePercentage =  $project->budget()->sum('budget') ? round(($project->expenditure()->sum('expenditure') * 100) / $project->budget()->sum('budget'), 2) : '0' }}%
                     </div>
                     <div class="progress" style="height: 30px;">
                         <div class="progress-bar font-kalimati" role="progressbar"
