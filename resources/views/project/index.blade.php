@@ -31,9 +31,10 @@
                                     <th>आयोजनाको किसिम</th>
                                     <th>जिल्ला</th>
                                     <th>स्थानिय तह</th>
-                                    <th>वड नम्बर</th>
+                                    <th>वडा नं.</th>
                                     <th>आयोजना सुरु भयको आ.ब.</th>
-                                    <th>स्वीकृत लागत अनुमान</th>
+                                    <th>बजेट उपशीर्षक न.</th>
+                                    <th>स्वीकृत बजेट</th>
                                     <th>लाभाम्वित हुने जनसंख्या</th>
                                     <th>सम्झौता मिति</th>
                                     <th>सम्झौता रकम</th>
@@ -55,6 +56,7 @@
                                             <td>{{ $project->municipality }}</td>
                                             <td class="font-kalimati">{{ $project->ward_no }}</td>
                                             <td>{{ $project->fiscalYear->fiscal_year }}</td>
+                                            <td>{{ $project->budget_subtitle }}</td>
                                             <td class="text-right font-kalimati">{{ $project->approval_budget }}</td>
                                             <td class="text-right font-kalimati">{{ $project->population_to_be_benefited }}</td>
                                             <td>

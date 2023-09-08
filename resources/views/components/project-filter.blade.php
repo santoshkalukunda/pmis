@@ -42,6 +42,20 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
+                                    <label for="budget_subtitle" class="form-label required">बजेट उपशीर्षक न.</label>
+                                    <input type="text" name="budget_subtitle"
+                                        class="form-control @error('budget_subtitle') is-invalid @enderror"
+                                        value="{{ old('budget_subtitle') }}" id="budget_subtitle" aria-describedby="budget_subtitle">
+                                    <div class="invalid-feedback">
+                                        @error('budget_subtitle')
+                                            {{ $message }}
+                                        @enderror
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
                                     <label for="name" class="form-label required">आयोजनाको नाम</label>
                                     <input type="text" name="name"
                                         class="form-control @error('name') is-invalid @enderror"

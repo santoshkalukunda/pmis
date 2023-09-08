@@ -316,7 +316,6 @@ class ProjectController extends Controller
         return $this->acheivement($office, $project, $acheivement);
     }
 
-
     public function indicator(Office $office, Project $project, Indicator $indicator = null)
     {
         if (!$indicator) {
@@ -439,7 +438,7 @@ class ProjectController extends Controller
 
         if ($request->has('district')) {
             if ($request->district != null) {
-                $projects = $projects->where('district',$request->district);
+                $projects = $projects->where('district', $request->district);
             }
         }
         if ($request->has('municipality')) {
@@ -457,7 +456,12 @@ class ProjectController extends Controller
                 $projects = $projects->where('project_type_id', $request->project_type_id);
             }
         }
-      
+        if ($request->has('budget_subtitle')) {
+            if ($request->budget_subtitle != null) {
+                $projects = $projects->where('budget_subtitle', $request->budget_subtitle);
+            }
+        }
+
         if ($request->has('status')) {
             if ($request->status != null) {
                 $projects = $projects->where('status', $request->status);
@@ -465,7 +469,7 @@ class ProjectController extends Controller
         }
         if ($request->has('name')) {
             if ($request->name != null) {
-                $projects = $projects->where('name', 'LIKE', "$request->name%");
+                $projects = $projects->where('name', 'LIKE', "%".$request->name ."%");
             }
         }
         $projects = $projects
