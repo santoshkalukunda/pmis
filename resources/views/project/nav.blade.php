@@ -10,11 +10,12 @@
             href="{{route('projects.show',[$office, $project])}}">विवरण</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark  {{ request()->routeIs('projects.physicalProgress') ? 'active' : '' }}" href="{{route('projects.physicalProgress',[$office, $project])}}">भौतिक प्रगति विवरण</a>
-    </li>
-    <li class="nav-item">
         <a class="nav-link text-dark  {{ request()->routeIs('projects.budgets') ? 'active' : '' }}" href="{{route('projects.budgets',[$office, $project])}}">विनियोजित बजेट</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link text-dark  {{ request()->routeIs('projects.physicalProgress') ? 'active' : '' }}" href="{{route('projects.physicalProgress',[$office, $project])}}">सम्झौता विवरण</a>
+    </li>
+  
     <li class="nav-item">
         <a class="nav-link text-dark  {{ request()->routeIs('projects.expenditures') ? 'active' : '' }}" href="{{route('projects.expenditures',[$office, $project])}}">खर्चहरु</a>
     </li>
