@@ -26,16 +26,24 @@
                         <div> <span class="text-bold">सम्झौता मिति : </span><span class="font-kalimati"
                                 id="agreement_date_bs"></span>
                         </div>
-                    @endif
 
-                    @if ($project->tender_amount)
                         <div> <span class="text-bold">सम्झौता रकम: </span><span class="font-kalimati">
                                 {{ $project->tender_amount }}</span>
+                        </div>
+                    @else
+                        <div>
+                            <span class="text-bold">
+                                सम्झौता भयको छैन
+                            </span>
                         </div>
                     @endif
                     @if ($project->project_start_date)
                         <div> <span class="text-bold">आयोजना सुरु मिति: </span><span class="font-kalimati"
                                 id="project_start_date_bs"></span>
+                        </div>
+                    @else
+                        <div>
+                            <span class="text-bold">आयोजना सुरु भयको छैन </span>
                         </div>
                     @endif
                     @if ($project->budget()->sum('budget') > 0)
