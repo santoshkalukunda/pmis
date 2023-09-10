@@ -43,6 +43,7 @@ class PhotoController extends Controller
             $path = Storage::putFile('project-photo', $request->file('photo'));
             $project->photo()->create([
                 'photo' => $path,
+                'name' => $request->name,
             ]);
         }
         return redirect()->back()->with('success','Photo uploaded');

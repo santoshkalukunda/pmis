@@ -32,6 +32,21 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="name" class="form-label required">नाम</label>
+                                <input type="text" name="name"
+                                    class="form-control @error('name') is-invalid @enderror"
+                                    value="{{ old('name') }}" id="name"
+                                    aria-describedby="name">
+                                <div class="invalid-feedback">
+                                    @error('name')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <label for="myfile"> <div>तस्बीर अपलोड गर्नुहोस्:</div> </label>
                             <input type="file" id="myfile" name="photo" accept="image/*">
                         </div>
@@ -50,16 +65,19 @@
                                     <img class="project-photo" src="{{ asset('storage/' . $photo->photo) }}"
                                         alt="poject-photo">
                                 </a>
-                                <div class="position-absolute bottom-0 start-50 translate-middle-x delete ">
-                                    <form action="{{ route('photos.destroy', $photo) }}" method="post">
-                                        @method('delete')
-                                        @csrf
-                                        <button class="dropdown-item btn form-control text-white delete" type="submit"
-                                            onclick="return confirm('Are you sure to delete?')">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h6>{{$photo->name}}</h6>
                                 </div>
+                                <form action="{{ route('photos.destroy', $photo) }}" method="post">
+                                    @method('delete')
+                                    @csrf
+                                    <button class="dropdown-item btn form-control text-white delete" type="submit"
+                                        onclick="return confirm('Are you sure to delete?')">
+                                        <i class="bi bi-trash"></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     @empty

@@ -33,10 +33,10 @@
 
     <li class="nav-item">
         <a class="nav-link text-dark {{ request()->routeIs('projects.photos') ? 'active' : '' }}"
-            href="{{ route('projects.photos', [$office, $project]) }}">तस्बीरहरू</a>
+            href="{{ route('projects.photos', [$office, $project]) }}">कागजातहरू</a>
     </li>
     <li class="nav-item ml-auto">
-        <a class="nav-link text-dark  {{ request()->routeIs('projects.photos') ? 'active' : '' }}"
+        <a class="nav-link text-dark"
             href="{{ route('projects.index', [$office, $project]) }}">Back</a>
     </li>
 </ul>
