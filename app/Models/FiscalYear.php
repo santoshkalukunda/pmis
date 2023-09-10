@@ -57,4 +57,9 @@ class FiscalYear extends Model
     public function indicator(){
         return $this->hasMany(Indicator::class,'fiscal_year_id');
     }
+
+    public function estimate()
+    {
+        return $this->hasMany(Estimate::class, 'fiscal_year_id');
+    }
 }

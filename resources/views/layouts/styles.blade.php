@@ -27,11 +27,24 @@
           font-display: fallback;
           src: url("{{ asset('font/Preeti.otf') }}") format('openType');
       }
+
       .font-kalimati {
           font-family: 'Kalimati';
       }
+
       .font-preeti {
           font-family: 'Preeti';
+      }
+
+      .text-right {
+          text-align: right;
+      }
+
+      input[type=number]::-webkit-inner-spin-button,
+      input[type=number]::-webkit-outer-spin-button {
+          -webkit-appearance: none;
+          margin: 0;
+          text-align: right;
       }
   </style>
 

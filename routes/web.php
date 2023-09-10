@@ -4,6 +4,7 @@ use App\Http\Controllers\AcheivementController;
 use App\Http\Controllers\ActiveFiscalYearController;
 use App\Http\Controllers\BudgetController;
 use App\Http\Controllers\BudgetSourceController;
+use App\Http\Controllers\EstimateController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\ExpenditureTypeController;
 use App\Http\Controllers\FinancialController;
@@ -139,6 +140,14 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::post('expenditures/{project}', [ExpenditureController::class, 'store'])->name('expenditures.store');
     Route::put('expenditures/{expenditure}', [ExpenditureController::class, 'update'])->name('expenditures.update');
     Route::delete('expenditures/{expenditure}', [ExpenditureController::class, 'destroy'])->name('expenditures.destroy');
+
+    //estimates
+    Route::get('projects/{office}/{project}/estimates', [ProjectController::class, 'estimate'])->name('projects.estimate');
+    Route::get('projects/{office}/{project}/estimates/{estimate}/edit', [ProjectController::class, 'estimateEdit'])->name('projects.estimate.edit');
+
+    Route::post('estimates/{project}', [EstimateController::class, 'store'])->name('estimates.store');
+    Route::put('estimates/{estimate}', [EstimateController::class, 'update'])->name('estimates.update');
+    Route::delete('estimates/{estimate}', [EstimateController::class, 'destroy'])->name('estimates.destroy');
 
     //users
     Route::get('users', [UserController::class, 'index'])->name('users.index');

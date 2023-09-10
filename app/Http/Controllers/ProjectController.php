@@ -9,6 +9,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Acheivement;
 use App\Models\Budget;
 use App\Models\BudgetSource;
+use App\Models\Estimate;
 use App\Models\Expenditure;
 use App\Models\ExpenditureType;
 use App\Models\Financial;
@@ -432,6 +433,36 @@ class ProjectController extends Controller
         return $this->expenditure($office, $project, $expenditure);
     }
 
+
+    public function estimate(Office $office, Project $project, Estimate $estimate = null)
+    {
+
+        if (!$estimate) {
+            $estimate = new Estimate();
+        }
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $estimates = $project
+            ->estimate()
+            ->orderBy('status')
+            ->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $estimates = $project
+                ->estimate()
+                ->orderBy('status')
+                ->get();
+            } else {
+                return abort(401);
+            }
+        }
+        return view('project.estimate', compact('project', 'office', 'estimates', 'estimate'));
+    }
+    public function estimateEdit(Office $office, Project $project, Estimate $estimate)
+    {
+        return $this->estimate($office, $project, $estimate);
+    }
+
     public function search(Office $office, Request $request)
     {
         $projects = new Project();
@@ -483,4 +514,6 @@ class ProjectController extends Controller
     {
         return Excel::download(new ProjectExport($office, $request), 'Project-report.xlsx');
     }
+
+  
 }

@@ -79,5 +79,10 @@ class User extends Authenticatable
     public function indicator(){
         return $this->hasMany(Indicator::class,'created_by');
     }
+
+    public function estimate()
+    {
+        return $this->hasMany(Estimate::class, 'created_by');
+    }
 }
 

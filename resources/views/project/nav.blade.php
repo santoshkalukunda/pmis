@@ -17,9 +17,13 @@
         <a class="nav-link text-dark  {{ request()->routeIs('projects.physicalProgress') ? 'active' : '' }}"
             href="{{ route('projects.physicalProgress', [$office, $project]) }}">सम्झौता विवरण</a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a class="nav-link text-dark {{ request()->routeIs('projects.indicator') ? 'active' : '' }}"
             href="{{ route('projects.indicator', [$office, $project]) }}">सूचकहरू</a>
+    </li> --}}
+    <li class="nav-item">
+        <a class="nav-link text-dark {{ request()->routeIs('projects.estimate') ? 'active' : '' }}"
+            href="{{ route('projects.estimate', [$office, $project]) }}">सूचकहरू</a>
     </li>
     <li class="nav-item">
         <a class="nav-link text-dark  {{ request()->routeIs('projects.expenditures') ? 'active' : '' }}"

@@ -35,50 +35,63 @@ class Project extends Model
 
         return parent::save($options);
     }
-    
+
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-    
-    public function projectType(){
+
+    public function projectType()
+    {
         return $this->belongsTo(ProjectType::class);
     }
 
-    public function office(){
+    public function office()
+    {
         return $this->belongsTo(Office::class);
     }
 
-    public function fiscalYear(){
+    public function fiscalYear()
+    {
         return $this->belongsTo(FiscalYear::class);
     }
 
-
-    public function financial(){
-        return $this->hasMany(Financial::class,'project_id');
+    public function financial()
+    {
+        return $this->hasMany(Financial::class, 'project_id');
     }
 
-    public function acheivement(){
-        return $this->hasMany(Acheivement::class,'project_id');
+    public function acheivement()
+    {
+        return $this->hasMany(Acheivement::class, 'project_id');
     }
 
-    public function indicator(){
-        return $this->hasMany(Indicator::class,'project_id');
+    public function indicator()
+    {
+        return $this->hasMany(Indicator::class, 'project_id');
     }
 
-    public function photo(){
-        return $this->hasMany(Photo::class,'project_id');
+    public function photo()
+    {
+        return $this->hasMany(Photo::class, 'project_id');
     }
 
-    public function budget(){
-        return $this->hasMany(Budget::class,'project_id');
+    public function budget()
+    {
+        return $this->hasMany(Budget::class, 'project_id');
     }
 
-    public function expenditure(){
-        return $this->hasMany(Expenditure::class,'project_id');
+    public function expenditure()
+    {
+        return $this->hasMany(Expenditure::class, 'project_id');
+    }
+    public function estimate()
+    {
+        return $this->hasMany(Estimate::class, 'project_id');
     }
 }
