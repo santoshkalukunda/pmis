@@ -17,7 +17,8 @@
                         <div class="col-md-4">
                             <label for="agreement_date" class="form-label required">सम्झौता मिति</label>
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control font-kalimati  @error('agreement_date_bs') is-invalid @enderror"
+                                <input type="text"
+                                    class="form-control font-kalimati  @error('agreement_date_bs') is-invalid @enderror"
                                     value="{{ old('agreement_date_bs', $project->agreement_date_bs) }}"
                                     id="agreement_date_bs" aria-describedby="agreement_date_bs" placeholder="YYYY-MM-DD">
                                 <input type="text" name="agreement_date"
@@ -36,7 +37,7 @@
                             <label for="tender_amount" class="form-label required">सम्झौता रकम</label>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="tender_amount">रु.</span>
-                                <input type="number" min="1"  name="tender_amount"
+                                <input type="number" min="1" name="tender_amount"
                                     class="form-control font-kalimati @error('tender_amount') is-invalid @enderror"
                                     value="{{ old('tender_amount', $project->tender_amount) }}" id="tender_amount"
                                     aria-describedby="tender_amount">
@@ -71,6 +72,66 @@
                             </div>
                         </div>
                         <div class="col-md-4">
+                            <label for="contract_number" class="form-label">ठेक्का नं.</label>
+                            <div class="input-group mb-3">
+                                <input type="number" min="1" name="contract_number"
+                                    class="form-control font-kalimati @error('contract_number') is-invalid @enderror"
+                                    value="{{ old('contract_number', $project->contract_number) }}" id="contract_number"
+                                    aria-describedby="contract_number">
+                                <div class="invalid-feedback">
+                                    @error('contract_number')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="contractor_name" class="form-label">ठेकेदारको नाम</label>
+                            <div class="input-group mb-3">
+                                <input type="text" name="contractor_name"
+                                    class="form-control font-kalimati @error('contractor_name') is-invalid @enderror"
+                                    value="{{ old('contractor_name', $project->contractor_name) }}" id="contractor_name"
+                                    aria-describedby="contractor_name">
+                                <div class="invalid-feedback">
+                                    @error('contractor_name')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="contractor_address" class="form-label">ठेकेदारको ठेगाना</label>
+                            <div class="input-group mb-3">
+                                <input type="text" name="contractor_address"
+                                    class="form-control font-kalimati @error('contractor_address') is-invalid @enderror"
+                                    value="{{ old('contractor_address', $project->contractor_address) }}" id="contractor_address"
+                                    aria-describedby="contractor_address">
+                                <div class="invalid-feedback">
+                                    @error('contractor_address')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="contractor_contact" class="form-label">ठेकेदारको सम्पर्क नं.</label>
+                            <div class="input-group mb-3">
+                                <input type="tel" name="contractor_contact"
+                                    class="form-control font-kalimati @error('contractor_contact') is-invalid @enderror"
+                                    value="{{ old('contractor_contact', $project->contractor_contact) }}" id="contractor_contact"
+                                    aria-describedby="contractor_contact">
+                                <div class="invalid-feedback">
+                                    @error('contractor_contact')
+                                        {{ $message }}
+                                    @enderror
+
+                                </div>
+                            </div>
+                        </div>
+                        {{-- <div class="col-md-4">
                             <label for="physical_progress" class="form-label">हालसम्मको भौतिक प्रगति (%)</label>
                             <div class="input-group mb-3">
                                 <input type="number" min="1" name="physical_progress"
@@ -85,15 +146,17 @@
 
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="col-md-8">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="status" class="form-label required">आयोजनाको
                                             स्थिति</label>
-                                        <select name="status" class="form-control font-kalimati @error('status') is-invalid @enderror"
-                                            id="status" aria-describedby="status" onchange="handleOptionChange(event)">
+                                        <select name="status"
+                                            class="form-control font-kalimati @error('status') is-invalid @enderror"
+                                            id="status" aria-describedby="status"
+                                            onchange="handleOptionChange(event)">
                                             <option value="0">काम भइरहेको छ</option>
                                             <option value="1" {{ $project->status == 1 ? 'selected' : '' }}>
                                                 सम्पन्न भइसकेको छ</option>
@@ -113,8 +176,9 @@
                                     <div class="input-group mb-3">
                                         <input type="text"
                                             class="form-control font-kalimati @error('project_completion_date_bs') is-invalid @enderror"
-                                            value="{{ old('project_completion_date_bs') }}" id="project_completion_date_bs"
-                                            aria-describedby="project_completion_date_bs" placeholder="YYYY-MM-DD">
+                                            value="{{ old('project_completion_date_bs') }}"
+                                            id="project_completion_date_bs" aria-describedby="project_completion_date_bs"
+                                            placeholder="YYYY-MM-DD">
                                         <input type="text" name="project_completion_date"
                                             class="form-control @error('project_completion_date') is-invalid @enderror"
                                             value="{{ old('project_completion_date') }}" id="project_completion_date"

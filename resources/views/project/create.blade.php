@@ -66,7 +66,7 @@
                                             <option value="">आयोजनाको किसिम छान्नुहोस्</option>
                                             @foreach ($projectTypes as $projectType)
                                                 <option value="{{ $projectType->id }}"
-                                                    {{ $projectType->id == $project->project_type_id ? 'selected' : '' }}>
+                                                    {{old('project_type_id',$project->project_type_id) == $projectType->id ? 'selected' : '' }}>
                                                     {{ $projectType->name }}</option>
                                             @endforeach
                                         </select>
@@ -123,6 +123,40 @@
                                                 {{ $message }}
                                             @enderror
         
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-3">
+                                        <label for="project_time_type" class="form-label required">आयोजनाको प्रकार</label>
+                                        <select name="project_time_type"
+                                            class="form-control @error('project_time_type') is-invalid @enderror"
+                                            id="project_time_type">
+                                            <option value="">छानुहोस</option>
+                                            <option value="0" {{old('project_time_type', $project->project_time_type) == 0 ? 'selected' : ""}}>एकवर्षीय</option>
+                                            <option value="1" {{old('project_time_type', $project->project_time_type) == 1 ? 'selected' : ""}}>बहुबर्षीय</option>
+                                        </select>
+                                        <div class="invalid-feedback">
+                                            @error('project_time_type')
+                                                {{ $message }}
+                                            @enderror
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="time_period" class="form-label required">प्रोजेक्ट समाप्ति समय (महिनामा) </label>
+                                    <div class="input-group mb-3">
+                                        <span class="input-group-text" id="time_period">महिना</span>
+                                        <input type="number" min="1" name="time_period"
+                                            class="form-control font-kalimati @error('time_period') is-invalid @enderror"
+                                            value="{{ old('time_period', $project->time_period) }}" id="time_period"
+                                            aria-describedby="time_period">
+                                        <div class="invalid-feedback">
+                                            @error('time_period')
+                                                {{ $message }}
+                                            @enderror
+
                                         </div>
                                     </div>
                                 </div>

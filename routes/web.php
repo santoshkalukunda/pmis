@@ -7,6 +7,7 @@ use App\Http\Controllers\BudgetSourceController;
 use App\Http\Controllers\EstimateController;
 use App\Http\Controllers\ExpenditureController;
 use App\Http\Controllers\ExpenditureTypeController;
+use App\Http\Controllers\ExpenseController;
 use App\Http\Controllers\FinancialController;
 use App\Http\Controllers\FiscalYearController;
 use App\Http\Controllers\IndicatorController;
@@ -86,9 +87,8 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::get('projects/{office}/excel', [ProjectController::class, 'excel'])->name('projects.excel');
 
     Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
-    // Route::get('projects/{office}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
-    Route::get('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
-    Route::post('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgressUpdate'])->name('projects.physicalProgress.update');
+    Route::get('projects/{office}/{project}/agrrements', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
+    Route::post('projects/{office}/{project}/agrrements', [ProjectController::class, 'physicalProgressUpdate'])->name('projects.physicalProgress.update');
     Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
     Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
@@ -141,13 +141,25 @@ Route::group(['middleware' => ['role:Super-Admin']], function () {
     Route::put('expenditures/{expenditure}', [ExpenditureController::class, 'update'])->name('expenditures.update');
     Route::delete('expenditures/{expenditure}', [ExpenditureController::class, 'destroy'])->name('expenditures.destroy');
 
-    //estimates
+    //estimate
     Route::get('projects/{office}/{project}/estimates', [ProjectController::class, 'estimate'])->name('projects.estimate');
     Route::get('projects/{office}/{project}/estimates/{estimate}/edit', [ProjectController::class, 'estimateEdit'])->name('projects.estimate.edit');
 
     Route::post('estimates/{project}', [EstimateController::class, 'store'])->name('estimates.store');
     Route::put('estimates/{estimate}', [EstimateController::class, 'update'])->name('estimates.update');
     Route::delete('estimates/{estimate}', [EstimateController::class, 'destroy'])->name('estimates.destroy');
+
+ 
+    //progress
+    Route::get('projects/{office}/{project}/progress', [ProjectController::class, 'progress'])->name('projects.progress');
+    Route::post('projects/{office}/{project}/progress', [ProjectController::class, 'progressStore'])->name('projects.progress-store');
+
+    Route::get('projects/{office}/{project}/progress/report', [ProjectController::class, 'progressReport'])->name('projects.progress-report');
+
+
+
+    //print
+    Route::get('projects/{office}/{project}/print', [ProjectController::class, 'print'])->name('projects.print');
 
     //users
     Route::get('users', [UserController::class, 'index'])->name('users.index');
@@ -193,8 +205,8 @@ Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
     Route::get('projects/{office}/excel', [ProjectController::class, 'excel'])->name('projects.excel');
 
     Route::get('projects/{office}/create', [ProjectController::class, 'create'])->name('projects.create');
-    Route::get('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
-    Route::post('projects/{office}/{project}/physical-progress', [ProjectController::class, 'physicalProgressUpdate'])->name('projects.physicalProgress.update');
+    Route::get('projects/{office}/{project}/agrrements', [ProjectController::class, 'physicalProgress'])->name('projects.physicalProgress');
+    Route::post('projects/{office}/{project}/agrrements', [ProjectController::class, 'physicalProgressUpdate'])->name('projects.physicalProgress.update');
     Route::post('projects/{office}', [ProjectController::class, 'store'])->name('projects.store');
     Route::get('projects/{office}/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::get('projects/{office}/{project}', [ProjectController::class, 'show'])->name('projects.show');
@@ -243,6 +255,25 @@ Route::group(['middleware' => ['role:Super-Admin|admin']], function () {
     Route::get('profile', [UserController::class, 'profile'])->name('users.profile');
     Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.changePassword');
+
+    //estimate
+    Route::get('projects/{office}/{project}/estimates', [ProjectController::class, 'estimate'])->name('projects.estimate');
+    Route::get('projects/{office}/{project}/estimates/{estimate}/edit', [ProjectController::class, 'estimateEdit'])->name('projects.estimate.edit');
+
+    Route::post('estimates/{project}', [EstimateController::class, 'store'])->name('estimates.store');
+    Route::put('estimates/{estimate}', [EstimateController::class, 'update'])->name('estimates.update');
+    Route::delete('estimates/{estimate}', [EstimateController::class, 'destroy'])->name('estimates.destroy');
+
+    //expenses
+    Route::get('projects/{office}/{project}/expenses', [ProjectController::class, 'expense'])->name('projects.expense');
+    Route::get('projects/{office}/{project}/expenses/{expense}/edit', [ProjectController::class, 'expenseEdit'])->name('projects.expense.edit');
+
+    Route::post('expenses/{project}', [ExpenseController::class, 'store'])->name('expenses.store');
+    Route::put('expenses/{expense}', [ExpenseController::class, 'update'])->name('expenses.update');
+    // Route::delete('expenses/{expense}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
+
+    //print
+    Route::get('projects/{office}/{project}/print', [ProjectController::class, 'print'])->name('projects.print');
 });
 
 Route::group(['middleware' => ['role:Super-Admin|admin|user']], function () {
@@ -304,4 +335,23 @@ Route::group(['middleware' => ['role:Super-Admin|admin|user']], function () {
     Route::get('profile', [UserController::class, 'profile'])->name('users.profile');
     Route::put('users/{user}', [UserController::class, 'update'])->name('users.update');
     Route::post('users/{user}/change-password', [UserController::class, 'changePassword'])->name('users.changePassword');
+
+    //estimate
+    Route::get('projects/{office}/{project}/estimates', [ProjectController::class, 'estimate'])->name('projects.estimate');
+    Route::get('projects/{office}/{project}/estimates/{estimate}/edit', [ProjectController::class, 'estimateEdit'])->name('projects.estimate.edit');
+
+    Route::post('estimates/{project}', [EstimateController::class, 'store'])->name('estimates.store');
+    Route::put('estimates/{estimate}', [EstimateController::class, 'update'])->name('estimates.update');
+    Route::delete('estimates/{estimate}', [EstimateController::class, 'destroy'])->name('estimates.destroy');
+
+    //expenses
+    Route::get('projects/{office}/{project}/expenses', [ProjectController::class, 'expense'])->name('projects.expense');
+    Route::get('projects/{office}/{project}/expenses/{expense}/edit', [ProjectController::class, 'expenseEdit'])->name('projects.expense.edit');
+
+    Route::post('expenses/{project}', [ExpenseController::class, 'store'])->name('expenses.store');
+    Route::put('expenses/{expense}', [ExpenseController::class, 'update'])->name('expenses.update');
+    // Route::delete('expenses/{expense}', [ExpenseController::class, 'destroy'])->name('expenses.destroy');
+
+    //print
+    Route::get('projects/{office}/{project}/print', [ProjectController::class, 'print'])->name('projects.print');
 });

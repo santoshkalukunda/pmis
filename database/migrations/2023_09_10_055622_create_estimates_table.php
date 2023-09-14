@@ -19,10 +19,20 @@ class CreateEstimatesTable extends Migration
             $table->foreignId('fiscal_year_id')->constrained('fiscal_years')->cascadeOnUpdate()->cascadeOnDelete()->nullable();
             $table->string('name');
             $table->string('unit');
-            $table->float('quantity');
             $table->float('rate');
-            $table->float('cost')->nullable();
-            $table->boolean('status')->default(false);
+            $table->float('quantity');
+            $table->float('yearly_target_quantity')->nullable();
+            $table->float('first_quarterly_target_quantity')->nullable();
+            $table->float('second_quarterly_target_quantity')->nullable();
+            $table->float('third_quarterly_target_quantity')->nullable();
+            $table->float('fourth_quarterly_target_quantity')->nullable();
+
+            $table->float('yearly_quantity')->nullable();
+            $table->float('first_quarterly_quantity')->nullable();
+            $table->float('second_quarterly_quantity')->nullable();
+            $table->float('third_quarterly_quantity')->nullable();
+            $table->float('fourth_quarterly_quantity')->nullable();
+
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->timestamps();

@@ -12,6 +12,7 @@ use App\Models\BudgetSource;
 use App\Models\Estimate;
 use App\Models\Expenditure;
 use App\Models\ExpenditureType;
+use App\Models\Expense;
 use App\Models\Financial;
 use App\Models\FiscalYear;
 use App\Models\Indicator;
@@ -23,6 +24,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Maatwebsite\Excel\Facades\Excel;
+
+use function PHPUnit\Framework\returnSelf;
 
 class ProjectController extends Controller
 {
@@ -433,25 +436,23 @@ class ProjectController extends Controller
         return $this->expenditure($office, $project, $expenditure);
     }
 
-
     public function estimate(Office $office, Project $project, Estimate $estimate = null)
     {
-
         if (!$estimate) {
             $estimate = new Estimate();
         }
         $user = Auth::user();
         if ($user->hasRole('Super-Admin')) {
             $estimates = $project
-            ->estimate()
-            ->orderBy('status')
-            ->get();
+                ->estimate()
+                ->CurrentFislcalYear()
+                ->get();
         } else {
             if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
                 $estimates = $project
-                ->estimate()
-                ->orderBy('status')
-                ->get();
+                    ->estimate()
+                    ->CurrentFislcalYear()
+                    ->get();
             } else {
                 return abort(401);
             }
@@ -461,6 +462,79 @@ class ProjectController extends Controller
     public function estimateEdit(Office $office, Project $project, Estimate $estimate)
     {
         return $this->estimate($office, $project, $estimate);
+    }
+
+    public function expense(Office $office, Project $project, Expense $expense = null)
+    {
+        if (!$expense) {
+            $expense = new Expense();
+        }
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            $expenses = $project->expense()->get();
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                $expenses = $project->expense()->get();
+            } else {
+                return abort(401);
+            }
+        }
+        return view('project.expense', compact('project', 'office', 'expenses', 'expense'));
+    }
+    public function expenseEdit(Office $office, Project $project, Expense $expense)
+    {
+        return $this->expense($office, $project, $expense);
+    }
+
+    public function progress(Office $office, Project $project)
+    {
+        $estimates = $project
+            ->estimate()
+            ->CurrentFislcalYear()
+            ->get();
+        return view('project.progress', compact('project', 'office', 'estimates'));
+    }
+
+    public function progressStore(Office $office, Project $project, Request $request)
+    {
+        // Validate the incoming request data
+        $validatedData = $request->validate([
+            'yearly_quantity.*' => 'numeric',
+            'first_quarterly_quantity.*' => 'numeric',
+            'second_quarterly_quantity.*' => 'numeric',
+            'third_quarterly_quantity.*' => 'numeric',
+            'fourth_quarterly_quantity.*' => 'numeric',
+        ]);
+
+        // Loop through the submitted data and update the corresponding records in the database
+        foreach ($validatedData['yearly_quantity'] as $estimateId => $yearlyQuantity) {
+            // Find the corresponding estimate record by $estimateId
+            $estimate = Estimate::find($estimateId);
+
+            // Update the estimate record with the new values
+            $estimate->yearly_quantity = $yearlyQuantity;
+            $estimate->first_quarterly_quantity = $request->input('first_quarterly_quantity.' . $estimateId);
+            $estimate->second_quarterly_quantity = $request->input('second_quarterly_quantity.' . $estimateId);
+            $estimate->third_quarterly_quantity = $request->input('third_quarterly_quantity.' . $estimateId);
+            $estimate->fourth_quarterly_quantity = $request->input('fourth_quarterly_quantity.' . $estimateId);
+
+            // Save the updated estimate record
+            $estimate->save();
+        }
+
+        // Redirect back with a success message
+        return redirect()
+            ->back()
+            ->with('success', 'Data has been successfully saved.');
+    }
+
+    public function progressReport(Office $office, Project $project)
+    {
+        $estimates = $project
+            ->estimate()
+            ->CurrentFislcalYear()
+            ->get();
+        return view('project.progress-report', compact('project', 'office', 'estimates'));
     }
 
     public function search(Office $office, Request $request)
@@ -500,7 +574,7 @@ class ProjectController extends Controller
         }
         if ($request->has('name')) {
             if ($request->name != null) {
-                $projects = $projects->where('name', 'LIKE', "%".$request->name ."%");
+                $projects = $projects->where('name', 'LIKE', '%' . $request->name . '%');
             }
         }
         $projects = $projects
@@ -515,5 +589,17 @@ class ProjectController extends Controller
         return Excel::download(new ProjectExport($office, $request), 'Project-report.xlsx');
     }
 
-  
+    public function print(Office $office, Project $project)
+    {
+        $user = Auth::user();
+        if ($user->hasRole('Super-Admin')) {
+            return view('project.print', compact('project', 'office'));
+        } else {
+            if ($office->id == $user->office_id || $office->parent_id == $user->office_id) {
+                return view('project.print', compact('project', 'office'));
+            } else {
+                return abort(401);
+            }
+        }
+    }
 }

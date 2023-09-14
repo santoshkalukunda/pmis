@@ -41,6 +41,12 @@ class StoreProjectRequest extends FormRequest
             'status' => 'nullable|boolean',
             'project_completion_date' => 'nullable|date',
             'description' => 'nullable',
+            'project_time_type' =>'nullable',
+            'time_period' =>'nullable',
+            'contract_number' =>'nullable',
+            'contractor_name' =>'nullable',
+            'contractor_address' =>'nullable',
+            'contractor_contact' =>'nullable',
         ];
     }
 }

@@ -29,6 +29,11 @@ class UpdateEstimateRequest extends FormRequest
             'unit' => 'required',
             'quantity' => 'required',
             'rate' => 'required',
+            'yearly_target_quantity' => 'nullable',
+            'first_quarterly_target_quantity' => 'nullable',
+            'second_quarterly_target_quantity' => 'nullable',
+            'third_quarterly_target_quantity' => 'nullable',
+            'fourth_quarterly_target_quantity' => 'nullable',
         ];
     }
 }

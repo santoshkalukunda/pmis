@@ -17,6 +17,16 @@
                 <div class="d-grid gap-3">
                     <div> <span class="text-bold">आयोजना सुरु भयको आ.ब. : </span>{{ $project->fiscalYear->fiscal_year }}
                     </div>
+                    @if ($project->project_time_type)
+                        <div> <span class="text-bold">आयोजनाको प्रकार : </span> <span
+                                class="font-kalimati">{{ $project->project_time_type == 1 ? "बहुबर्षीय" : "एकवर्षीय" }}</span>
+                        </div>
+                    @endif
+                    @if ($project->time_period)
+                        <div> <span class="text-bold">प्रोजेक्ट समाप्ति समय : </span> <span
+                                class="font-kalimati">{{ $project->time_period }} महिना</span>
+                        </div>
+                    @endif
                     @if ($project->approval_budget)
                         <div> <span class="text-bold">स्वीकृति बजेट : </span> <span
                                 class="font-kalimati">रु.{{ $project->approval_budget }}/-</span>
@@ -72,7 +82,7 @@
                                 id="project_completion_date_bs"></span>
                     @endif
                 </div>
-                @if ($project->physical_progress)
+                {{-- @if ($project->physical_progress)
                     <div class="my-2">
                         <div class="text-center font-kalimati">हालसम्मको भौतिक प्रगति
                             {{ $project->physical_progress == null ? '0%' : $project->physical_progress . '%' }}</div>
@@ -83,8 +93,8 @@
                                 {{ $project->physical_progress == null ? '' : $project->physical_progress . '%' }}</div>
                         </div>
                     </div>
-                @endif
-                @if ($project->budget()->sum('budget') > 0)
+                @endif --}}
+                {{-- @if ($project->budget()->sum('budget') > 0)
                     <div class="my-2">
                         <div class="text-center font-kalimati">हालसम्मको आर्थिक प्रगति
                             रु.{{ $project->budget()->sum('budget') }}/- को
@@ -98,7 +108,7 @@
                                 {{ $expenditurePercentage == null ? '' : $expenditurePercentage . '%' }}</div>
                         </div>
                     </div>
-                @endif
+                @endif --}}
                 @if ($project->description)
                     <div>
                         <span class="text-bold">कैफियत</span>

@@ -41,6 +41,11 @@ class Project extends Model
         return 'slug';
     }
 
+    public function scopeCurrentFislcalYear($query)
+    {
+        return $query->where('fiscal_year_id', $this->fiscal_year_id);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);
