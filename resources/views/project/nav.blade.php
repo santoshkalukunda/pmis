@@ -27,7 +27,7 @@
             href="{{ route('projects.estimate', [$office, $project]) }}">सूचक</a>
     </li>
     <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle {{ request()->routeIs('projects.expenditures') ? 'active' : '' }}" data-bs-toggle="dropdown" href="#" role="button"
+        <a class="nav-link text-dark dropdown-toggle {{ request()->routeIs('projects.expenditures') ? 'active' : '' }}" data-bs-toggle="dropdown" href="#" role="button"
             aria-expanded="false">प्रगति</a>
         <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="{{ route('projects.progress', [$office, $project]) }}">प्रगति दर्ता</a></li>
